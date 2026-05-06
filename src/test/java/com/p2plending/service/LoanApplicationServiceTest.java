@@ -1,4 +1,4 @@
-package test.java.com.p2plending.service;
+package com.p2plending.service;
 
 import com.p2plending.domain.loan.Borrower;
 import com.p2plending.domain.loan.Loan;

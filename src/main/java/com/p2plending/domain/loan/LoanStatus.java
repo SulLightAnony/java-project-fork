@@ -1,4 +1,4 @@
-package main.java.com.p2plending.domain.loan;
+package com.p2plending.domain.loan;
 
 public enum LoanStatus {
     DRAFT, 

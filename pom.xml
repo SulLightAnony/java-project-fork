@@ -27,11 +27,27 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- Mockito: Untuk memalsukan In-Memory Repository -->
+    <!-- Pustaka Utama Mockito -->
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
-      <version>5.5.0</version>
+      <version>5.4.0</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Jembatan Penghubung antara Mockito dan JUnit 5 (Jupiter) -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-junit-jupiter</artifactId>
+      <version>5.4.0</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Mesin Eksekutor JUnit 5 untuk Maven Surefire -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>5.9.2</version>
       <scope>test</scope>
     </dependency>
 

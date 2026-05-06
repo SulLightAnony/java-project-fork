@@ -1,4 +1,4 @@
-package test.java.com.p2plending.domain.loan;
+package com.p2plending.domain.loan;
 
 import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;

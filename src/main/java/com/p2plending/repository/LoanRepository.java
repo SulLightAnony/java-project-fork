@@ -1,4 +1,4 @@
-package main.java.com.p2plending.repository;
+package com.p2plending.repository;
 
 import com.p2plending.domain.loan.Loan;
 import java.util.Optional;
