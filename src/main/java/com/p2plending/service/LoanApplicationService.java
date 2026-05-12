@@ -18,18 +18,21 @@ public class LoanApplicationService {
         this.loanRepository = loanRepository;
     }
 
-    public String applyForLoan(String borrowerId, BigDecimal amount) {
-        // 1. Tarik data peminjam dari In-Memory Repository
+    public String apply(String borrowerId, BigDecimal amount, int tenor, String purpose) {
         Borrower borrower = borrowerRepository.findById(borrowerId)
-                .orElseThrow(() -> new IllegalArgumentException("Borrower tidak ditemukan"));
+                .orElseThrow(() -> new IllegalArgumentException("Borrower not found"));
 
-        // 2. Buat ID Pinjaman
-        String loanId = "L-" + UUID.randomUUID().toString().substring(0, 8);
+        if (!borrower.isEligible()) {
+            throw new IllegalArgumentException("Borrower is not eligible for a loan");
+        }
 
-        // 3. Eksekusi Domain Logic (Jika limit kurang, sistem akan melempar error otomatis dari dalam entitas Loan)
-        Loan loan = new Loan(loanId, borrower, amount);
+        if (!borrower.canBorrow(amount)) {
+            throw new IllegalArgumentException("Insufficient borrowing limit");
+        }
 
-        // 4. Simpan mutasi data ke In-Memory Repository
+        String loanId = UUID.randomUUID().toString();
+        Loan loan = new Loan(loanId, borrower, amount, tenor, purpose);
+
         loanRepository.save(loan);
         borrowerRepository.save(borrower);
 
