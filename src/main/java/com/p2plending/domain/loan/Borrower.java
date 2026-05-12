@@ -37,19 +37,14 @@ public class Borrower {
         return isActive;
     }
 
-    // logika bisnis
-
-    // cek apakah limit mencukupi
     public boolean isEligible() {
         return isActive && creditScore >= 500;
     }
 
-    // cek apakah limit mencukupi untuk jumlah yang diajukan
     public boolean canBorrow(BigDecimal amount) {
         return remainingLimit.compareTo(amount) >= 0;
     }
 
-    // kurangi limit setelah pinjaman disetujui
     public void decreaseLimit(BigDecimal amount) {
         if (!canBorrow(amount)) {
             throw new IllegalArgumentException("Limit pinjaman tidak mencukupi");
@@ -57,12 +52,11 @@ public class Borrower {
         this.remainingLimit = this.remainingLimit.subtract(amount);
     }
 
-    // kembalikan limit setelah peminjaman
     public void restoreLimit(BigDecimal amount) {
         this.remainingLimit = this.remainingLimit.add(amount);
     }
 
-    public void deactive() {
+    public void deactivate() {
         this.isActive = false;
     }
 }
