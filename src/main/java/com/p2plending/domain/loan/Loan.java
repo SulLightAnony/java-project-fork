@@ -12,7 +12,7 @@ public class Loan {
     private final int tenor;
     private final String purpose;
     private final LocalDateTime createdAt;
-    
+
     private LoanStatus status;
     private transient LoanState stateBehavior;
 
@@ -21,17 +21,17 @@ public class Loan {
         if (!borrower.canBorrow(amount)) {
             throw new IllegalArgumentException("Limit pinjaman tidak mencukupi");
         }
-        
+
         this.id = id;
         this.borrower = borrower;
         this.amount = amount;
         this.tenor = tenor;
         this.purpose = purpose;
         this.createdAt = LocalDateTime.now();
-        
+
         this.status = LoanStatus.DRAFT;
         this.stateBehavior = new DraftState();
-        
+
         this.borrower.decreaseLimit(amount);
     }
 
