@@ -34,6 +34,10 @@ public class Loan {
         return id;
     }
 
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
     public LoanStatus getStatus() {
         return status;
     }
