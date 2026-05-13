@@ -1,4 +1,6 @@
+com\p2plending\domain\funding\Lender.class
 com\p2plending\domain\loan\Borrower.class
+com\p2plending\repository\LenderRepository.class
 com\p2plending\domain\loan\Loan.class
 com\p2plending\domain\loan\state\DraftState.class
 com\p2plending\domain\loan\state\PendingState.class
