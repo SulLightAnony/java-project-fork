@@ -1,0 +1,15 @@
+D:\java\TEKPRO1011\src\main\java\com\p2plending\risk\handler\LoanLimitHandler.java
+D:\java\TEKPRO1011\src\main\java\com\p2plending\risk\handler\ValidationHandler.java
+D:\java\TEKPRO1011\src\main\java\com\p2plending\domain\loan\Borrower.java
+D:\java\TEKPRO1011\src\main\java\com\p2plending\repository\LoanRepository.java
+D:\java\TEKPRO1011\src\main\java\com\p2plending\risk\ValidationContext.java
+D:\java\TEKPRO1011\src\main\java\com\p2plending\risk\handler\CreditScoreHandler.java
+D:\java\TEKPRO1011\src\main\java\com\p2plending\domain\loan\state\LoanState.java
+D:\java\TEKPRO1011\src\main\java\com\p2plending\domain\loan\state\PendingState.java
+D:\java\TEKPRO1011\src\main\java\com\p2plending\service\LoanApplicationService.java
+D:\java\TEKPRO1011\src\main\java\com\p2plending\repository\BorrowerRepository.java
+D:\java\TEKPRO1011\src\main\java\com\p2plending\domain\loan\state\DraftState.java
+D:\java\TEKPRO1011\src\main\java\com\p2plending\domain\loan\Loan.java
+D:\java\TEKPRO1011\src\main\java\com\p2plending\domain\loan\LoanStatus.java
+D:\java\TEKPRO1011\src\main\java\com\p2plending\risk\handler\DebtRatioHandler.java
+D:\java\TEKPRO1011\src\main\java\com\p2plending\risk\ValidationResult.java
