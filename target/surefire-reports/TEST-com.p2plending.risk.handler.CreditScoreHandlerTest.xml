@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.p2plending.domain.loan.LoanTest" time="0.046" tests="3" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.p2plending.risk.handler.CreditScoreHandlerTest" time="0.002" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -58,7 +58,8 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="createLoan_WithinLimit_SuccessAndStatusIsDraft" classname="com.p2plending.domain.loan.LoanTest" time="0.027"/>
-  <testcase name="createLoan_ExceedsLimit_ThrowsException" classname="com.p2plending.domain.loan.LoanTest" time="0.002"/>
-  <testcase name="submitLoan_FromDraft_ChangesToPending" classname="com.p2plending.domain.loan.LoanTest" time="0.001"/>
+  <testcase name="shouldRejectWhenCreditScoreIsAtBoundary" classname="com.p2plending.risk.handler.CreditScoreHandlerTest" time="0"/>
+  <testcase name="shouldPassToNextHandlerWhenApproved" classname="com.p2plending.risk.handler.CreditScoreHandlerTest" time="0"/>
+  <testcase name="shouldRejectWhenCreditScoreIsBelowMinimum" classname="com.p2plending.risk.handler.CreditScoreHandlerTest" time="0"/>
+  <testcase name="shouldPassWhenCreditScoreIsAboveMinimum" classname="com.p2plending.risk.handler.CreditScoreHandlerTest" time="0"/>
 </testsuite>
