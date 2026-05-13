@@ -13,12 +13,15 @@ public class DebtRatioHandler extends ValidationHandler {
             return ValidationResult.reject("Monthly income must be greater than zero");
         }
 
-        double dti = context.getExistingMonthlyDebt() / context.getMonthlyIncome();
-
-        if (dti > MAXIMUM_DTI_RATIO) {
+        if (exceedsMaximumDTI(context)) {
             return ValidationResult.reject("DTI ratio exceeds limit");
         }
 
         return passToNext(context);
+    }
+
+    private boolean exceedsMaximumDTI(ValidationContext context) {
+        double dti = context.getExistingMonthlyDebt() / context.getMonthlyIncome();
+        return dti > MAXIMUM_DTI_RATIO;
     }
 }
