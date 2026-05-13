@@ -14,7 +14,11 @@ public abstract class ValidationHandler {
     public abstract ValidationResult handle(ValidationContext context);
 
     protected ValidationResult passToNext(ValidationContext context) {
-        if (next != null) return next.handle(context);
-        return ValidationResult.approve();
+    if (isLastHandler()) return ValidationResult.approve();
+    return next.handle(context);
+    }
+
+    private boolean isLastHandler() {
+    return next == null;
     }
 }
