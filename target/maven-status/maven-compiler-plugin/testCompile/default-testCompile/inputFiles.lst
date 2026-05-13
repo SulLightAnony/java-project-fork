@@ -1,6 +1,15 @@
+<<<<<<< HEAD
 D:\java\TEKPRO1011\src\test\java\com\p2plending\risk\handler\CreditScoreHandlerTest.java
 D:\java\TEKPRO1011\src\test\java\com\p2plending\domain\loan\LoanTest.java
 D:\java\TEKPRO1011\src\test\java\com\p2plending\service\RiskEngineServiceTest.java
 D:\java\TEKPRO1011\src\test\java\com\p2plending\service\LoanApplicationServiceTest.java
 D:\java\TEKPRO1011\src\test\java\com\p2plending\risk\handler\DebtRatioHandlerTest.java
 D:\java\TEKPRO1011\src\test\java\com\p2plending\risk\handler\LoanLimitHandlerTest.java
+=======
+C:\Users\ismai\Documents\Belajar Java\Tugas Besar Java\C3-p2p-lending\src\test\java\com\p2plending\domain\loan\LoanTest.java
+C:\Users\ismai\Documents\Belajar Java\Tugas Besar Java\C3-p2p-lending\src\test\java\com\p2plending\interest\FixedInterestStrategyTest.java
+C:\Users\ismai\Documents\Belajar Java\Tugas Besar Java\C3-p2p-lending\src\test\java\com\p2plending\service\DisbursementServiceTest.java
+C:\Users\ismai\Documents\Belajar Java\Tugas Besar Java\C3-p2p-lending\src\test\java\com\p2plending\domain\funding\FundingTest.java
+C:\Users\ismai\Documents\Belajar Java\Tugas Besar Java\C3-p2p-lending\src\test\java\com\p2plending\stepdefs\LoanApplicationSteps.java
+C:\Users\ismai\Documents\Belajar Java\Tugas Besar Java\C3-p2p-lending\src\test\java\com\p2plending\service\LoanApplicationServiceTest.java
+>>>>>>> b8bd1cfc0a02b3d37a3cbf35ab5be24c89909c04

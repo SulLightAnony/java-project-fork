@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.p2plending.service.LoanApplicationServiceTest" time="1.428" tests="1" errors="0" skipped="0" failures="0">
+=======
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.p2plending.service.LoanApplicationServiceTest" time="1.699" tests="2" errors="0" skipped="0" failures="0">
+>>>>>>> b8bd1cfc0a02b3d37a3cbf35ab5be24c89909c04
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -14,8 +18,13 @@
     <property name="java.vm.specification.version" value="17"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
+<<<<<<< HEAD
     <property name="sun.boot.library.path" value="C:\Program Files\Eclipse Adoptium\jdk-17.0.18.8-hotspot\bin"/>
     <property name="sun.java.command" value="C:\Users\sramd\AppData\Local\Temp\surefire10958211898868665878\surefirebooter2368611276155608769.jar C:\Users\sramd\AppData\Local\Temp\surefire10958211898868665878 2026-05-13T22-25-18_738-jvmRun1 surefire5873922171213712032tmp surefire_07290526553602332792tmp"/>
+=======
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-25.0.2\bin"/>
+    <property name="sun.java.command" value="C:\Users\ismai\AppData\Local\Temp\surefire14527252677240401070\surefirebooter9764598167579751308.jar C:\Users\ismai\AppData\Local\Temp\surefire14527252677240401070 2026-05-12T22-30-09_409-jvmRun1 surefire11487616125332248233tmp surefire_04864450975896330252tmp"/>
+>>>>>>> b8bd1cfc0a02b3d37a3cbf35ab5be24c89909c04
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="D:\java\TEKPRO1011\target\test-classes;D:\java\TEKPRO1011\target\classes;C:\Users\sramd\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.0\junit-jupiter-api-5.10.0.jar;C:\Users\sramd\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\sramd\.m2\repository\org\junit\platform\junit-platform-commons\1.10.0\junit-platform-commons-1.10.0.jar;C:\Users\sramd\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\sramd\.m2\repository\org\mockito\mockito-core\5.4.0\mockito-core-5.4.0.jar;C:\Users\sramd\.m2\repository\net\bytebuddy\byte-buddy\1.14.5\byte-buddy-1.14.5.jar;C:\Users\sramd\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.5\byte-buddy-agent-1.14.5.jar;C:\Users\sramd\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\sramd\.m2\repository\org\mockito\mockito-junit-jupiter\5.4.0\mockito-junit-jupiter-5.4.0.jar;C:\Users\sramd\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.2\junit-jupiter-engine-5.9.2.jar;C:\Users\sramd\.m2\repository\org\junit\platform\junit-platform-engine\1.9.2\junit-platform-engine-1.9.2.jar;C:\Users\sramd\.m2\repository\io\cucumber\cucumber-java\7.14.0\cucumber-java-7.14.0.jar;C:\Users\sramd\.m2\repository\io\cucumber\cucumber-core\7.14.0\cucumber-core-7.14.0.jar;C:\Users\sramd\.m2\repository\io\cucumber\cucumber-gherkin\7.14.0\cucumber-gherkin-7.14.0.jar;C:\Users\sramd\.m2\repository\io\cucumber\cucumber-gherkin-messages\7.14.0\cucumber-gherkin-messages-7.14.0.jar;C:\Users\sramd\.m2\repository\io\cucumber\gherkin\26.2.0\gherkin-26.2.0.jar;C:\Users\sramd\.m2\repository\io\cucumber\messages\22.0.0\messages-22.0.0.jar;C:\Users\sramd\.m2\repository\io\cucumber\tag-expressions\5.0.6\tag-expressions-5.0.6.jar;C:\Users\sramd\.m2\repository\io\cucumber\cucumber-expressions\16.1.2\cucumber-expressions-16.1.2.jar;C:\Users\sramd\.m2\repository\io\cucumber\datatable\7.14.0\datatable-7.14.0.jar;C:\Users\sramd\.m2\repository\io\cucumber\cucumber-plugin\7.14.0\cucumber-plugin-7.14.0.jar;C:\Users\sramd\.m2\repository\io\cucumber\docstring\7.14.0\docstring-7.14.0.jar;C:\Users\sramd\.m2\repository\io\cucumber\html-formatter\20.4.0\html-formatter-20.4.0.jar;C:\Users\sramd\.m2\repository\io\cucumber\junit-xml-formatter\0.2.0\junit-xml-formatter-0.2.0.jar;C:\Users\sramd\.m2\repository\io\cucumber\ci-environment\9.2.0\ci-environment-9.2.0.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +39,11 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
+<<<<<<< HEAD
     <property name="surefire.real.class.path" value="C:\Users\sramd\AppData\Local\Temp\surefire10958211898868665878\surefirebooter2368611276155608769.jar"/>
+=======
+    <property name="surefire.real.class.path" value="C:\Users\ismai\AppData\Local\Temp\surefire14527252677240401070\surefirebooter9764598167579751308.jar"/>
+>>>>>>> b8bd1cfc0a02b3d37a3cbf35ab5be24c89909c04
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.18+8"/>
@@ -50,7 +63,11 @@
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="native.encoding" value="Cp1252"/>
+<<<<<<< HEAD
     <property name="java.library.path" value="C:\Program Files\Eclipse Adoptium\jdk-17.0.18.8-hotspot\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Users\sramd\AppData\Local\Programs\Microsoft VS Code;C:\Program Files\Eclipse Adoptium\jdk-17.0.18.8-hotspot\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\NVIDIA Corporation\NVIDIA app\NvDLISR;C:\Users\sramd\Downloads\apache-maven-3.9.15-bin\apache-maven-3.9.15\bin;C:\Program Files\Eclipse Adoptium\jdk-17.0.18.8-hotspot\bin;C:\Users\sramd\AppData\Local\Programs\Python\Python311\Scripts\;C:\Users\sramd\AppData\Local\Programs\Python\Python311\;C:\Users\sramd\AppData\Local\Programs\Python\Python314\Scripts\;C:\Users\sramd\AppData\Local\Programs\Python\Python314\;C:\Users\sramd\AppData\Local\Programs\Eclipse Adoptium\jdk-25.0.2.10-hotspot\bin;C:\Users\sramd\AppData\Local\Microsoft\WindowsApps;C:\Users\sramd\AppData\Local\Programs\Git\cmd;C:\Users\sramd\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\sramd\AppData\Local\Python\bin;c:\Users\sramd\.vscode\extensions\vscjava.vscode-java-debug-0.59.0\bundled\scripts\noConfigScripts;."/>
+=======
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-25.0.2\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk-25.0.2\bin;C:\Users\ismai\AppData\Local\Programs\Python\Python314;C:\Users\ismai\AppData\Local\Programs\Python\Python314\Scripts;C:\Program Files\nodejs\;C:\WINDOWS\system32\config\systemprofile\AppData\Local\Muse Hub\lib;C:\Program Files\Java\jdk-25.0.2\bin;C:\maven\apache-maven-3.9.15\bin;%MAVEN_HOME%\bin;C:\Users\ismai\AppData\Local\Programs\Python\Python314\Scripts\;C:\Users\ismai\AppData\Local\Programs\Python\Python314\;C:\Users\ismai\AppData\Local\Programs\Python\Launcher\;C:\Users\ismai\AppData\Local\Microsoft\WindowsApps;C:\Users\ismai\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\ismai\AppData\Roaming\npm;C:\Users\ismai\AppData\Local\Muse Hub\lib;C:\Users\ismai\AppData\Local\Programs\Antigravity\bin;."/>
+>>>>>>> b8bd1cfc0a02b3d37a3cbf35ab5be24c89909c04
     <property name="java.vm.info" value="mixed mode, sharing"/>
     <property name="java.vendor" value="Eclipse Adoptium"/>
     <property name="java.vm.version" value="17.0.18+8"/>
@@ -58,5 +75,10 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
+<<<<<<< HEAD
   <testcase name="applyForLoan_ShouldSaveLoanToRepository" classname="com.p2plending.service.LoanApplicationServiceTest" time="1.428"/>
+=======
+  <testcase name="apply_Success" classname="com.p2plending.service.LoanApplicationServiceTest" time="1.672"/>
+  <testcase name="apply_IneligibleBorrower_ThrowsException" classname="com.p2plending.service.LoanApplicationServiceTest" time="0.003"/>
+>>>>>>> b8bd1cfc0a02b3d37a3cbf35ab5be24c89909c04
 </testsuite>
