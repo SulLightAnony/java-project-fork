@@ -1,4 +1,5 @@
 com\p2plending\risk\handler\ValidationHandler.class
+com\p2plending\risk\RiskEngine.class
 com\p2plending\risk\handler\CreditScoreHandler.class
 com\p2plending\risk\handler\DebtRatioHandler.class
 com\p2plending\domain\loan\Borrower.class
@@ -7,9 +8,11 @@ com\p2plending\risk\ValidationContext.class
 com\p2plending\domain\loan\state\DraftState.class
 com\p2plending\domain\loan\state\PendingState.class
 com\p2plending\domain\loan\LoanStatus.class
+com\p2plending\risk\RiskEngineImpl.class
 com\p2plending\domain\loan\state\LoanState.class
 com\p2plending\repository\BorrowerRepository.class
 com\p2plending\repository\LoanRepository.class
 com\p2plending\risk\handler\LoanLimitHandler.class
+com\p2plending\service\RiskEngineService.class
 com\p2plending\risk\ValidationResult.class
 com\p2plending\service\LoanApplicationService.class

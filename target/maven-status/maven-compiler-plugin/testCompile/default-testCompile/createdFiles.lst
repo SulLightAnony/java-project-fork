@@ -1,4 +1,5 @@
 com\p2plending\service\LoanApplicationServiceTest.class
+com\p2plending\service\RiskEngineServiceTest.class
 com\p2plending\risk\handler\CreditScoreHandlerTest$1.class
 com\p2plending\domain\loan\LoanTest.class
 com\p2plending\risk\handler\CreditScoreHandlerTest.class

@@ -2,7 +2,10 @@ D:\java\TEKPRO1011\src\main\java\com\p2plending\risk\handler\LoanLimitHandler.ja
 D:\java\TEKPRO1011\src\main\java\com\p2plending\risk\handler\ValidationHandler.java
 D:\java\TEKPRO1011\src\main\java\com\p2plending\domain\loan\Borrower.java
 D:\java\TEKPRO1011\src\main\java\com\p2plending\repository\LoanRepository.java
+D:\java\TEKPRO1011\src\main\java\com\p2plending\risk\RiskEngineImpl.java
+D:\java\TEKPRO1011\src\main\java\com\p2plending\service\RiskEngineService.java
 D:\java\TEKPRO1011\src\main\java\com\p2plending\risk\ValidationContext.java
+D:\java\TEKPRO1011\src\main\java\com\p2plending\risk\RiskEngine.java
 D:\java\TEKPRO1011\src\main\java\com\p2plending\risk\handler\CreditScoreHandler.java
 D:\java\TEKPRO1011\src\main\java\com\p2plending\domain\loan\state\LoanState.java
 D:\java\TEKPRO1011\src\main\java\com\p2plending\domain\loan\state\PendingState.java
