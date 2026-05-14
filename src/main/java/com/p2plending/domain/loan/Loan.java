@@ -87,6 +87,8 @@ public class Loan {
         this.stateBehavior = newState;
         this.status = newStatus;
     }
-
+    public void disburse() {
+    // TODO: akan diimplementasikan oleh tim Disbursement
+    }
 
 }
