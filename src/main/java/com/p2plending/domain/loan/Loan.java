@@ -63,6 +63,14 @@ public class Loan {
         return status;
     }
 
+    public void setLoanStatus(LoanStatus status) {
+        this.status = status;
+    }
+
+    public void setLoanState(LoanState state) {
+        this.stateBehavior = state;
+    }
+
     public void submit() {
         this.stateBehavior.submit(this);
     }
@@ -83,4 +91,8 @@ public class Loan {
         this.stateBehavior = newState;
         this.status = newStatus;
     }
+    public void disburse() {
+    // TODO: akan diimplementasikan oleh tim Disbursement
+    }
+
 }

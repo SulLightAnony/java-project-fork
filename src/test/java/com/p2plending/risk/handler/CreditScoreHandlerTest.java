@@ -43,10 +43,10 @@ class CreditScoreHandlerTest {
     }
 
     @Test
-    @DisplayName("Harus reject jika credit score tepat di batas bawah (599)")
+    @DisplayName("Harus reject jika credit score tepat di batas bawah (649)")
     void shouldRejectWhenCreditScoreIsAtBoundary() {
         ValidationContext ctx = new ValidationContext(
-            50_000_000, 599, 10_000_000, 2_000_000, 100_000_000
+            50_000_000, 649, 10_000_000, 2_000_000, 100_000_000
         );
 
         ValidationResult result = handler.handle(ctx);

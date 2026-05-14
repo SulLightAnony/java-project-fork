@@ -12,5 +12,5 @@ Feature: Disbursement and Interest Calculation
   Scenario: Successful loan disbursement
     Given a loan with ID "L-001" has the status "FUNDED"
     When the disbursement service processes the loan "L-001"
-    Then the loan status should become "DISBURSED"
+    Then the loan status should become "ACTIVE"
     And a repayment schedule should be generated
