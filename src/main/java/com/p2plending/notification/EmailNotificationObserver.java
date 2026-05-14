@@ -1,5 +1,7 @@
 package com.p2plending.domain.funding;
 
+import com.p2plending.notification.EmailService;
+
 /**
  * Implementasi FundingObserver yang mengirim notifikasi via email
  * kepada borrower dan seluruh lender yang berkontribusi ketika
