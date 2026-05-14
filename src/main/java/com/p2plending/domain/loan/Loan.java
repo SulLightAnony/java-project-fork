@@ -67,6 +67,10 @@ public class Loan {
         this.status = status;
     }
 
+    public void setLoanState(LoanState state) {
+        this.stateBehavior = state;
+    }
+
     public void submit() {
         this.stateBehavior.submit(this);
     }
