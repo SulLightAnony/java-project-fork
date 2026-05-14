@@ -1,0 +1,54 @@
+Feature: Risk Engine Evaluation
+  Sebagai sistem P2P Lending
+  Saya ingin mengevaluasi kelayakan pinjaman
+  Agar hanya pinjaman yang layak yang masuk ke fase funding
+
+  Background:
+    Given sistem risk engine sudah berjalan
+
+  # === Credit Score ===
+
+  Scenario: Pinjaman disetujui karena credit score mencukupi
+    Given borrower memiliki credit score 700
+    And DTI ratio borrower adalah 30%
+    And jumlah pinjaman yang diajukan adalah Rp 20.000.000
+    When risk engine mengevaluasi pinjaman
+    Then hasil evaluasi adalah APPROVED
+
+  Scenario: Pinjaman ditolak karena credit score terlalu rendah
+    Given borrower memiliki credit score 500
+    And DTI ratio borrower adalah 30%
+    And jumlah pinjaman yang diajukan adalah Rp 20.000.000
+    When risk engine mengevaluasi pinjaman
+    Then hasil evaluasi adalah REJECTED
+    And alasan penolakan adalah "Credit score di bawah minimum"
+
+  # === DTI Ratio ===
+
+  Scenario: Pinjaman ditolak karena DTI ratio terlalu tinggi
+    Given borrower memiliki credit score 700
+    And DTI ratio borrower adalah 50%
+    And jumlah pinjaman yang diajukan adalah Rp 20.000.000
+    When risk engine mengevaluasi pinjaman
+    Then hasil evaluasi adalah REJECTED
+    And alasan penolakan adalah "DTI ratio melebihi batas maksimum"
+
+  # === Loan Limit ===
+
+  Scenario: Pinjaman ditolak karena melebihi limit
+    Given borrower memiliki credit score 700
+    And DTI ratio borrower adalah 30%
+    And jumlah pinjaman yang diajukan adalah Rp 75.000.000
+    When risk engine mengevaluasi pinjaman
+    Then hasil evaluasi adalah REJECTED
+    And alasan penolakan adalah "Jumlah pinjaman melebihi limit maksimum"
+
+  # === Gabungan ===
+
+  Scenario: Pinjaman ditolak pada rule pertama yang gagal
+    Given borrower memiliki credit score 500
+    And DTI ratio borrower adalah 50%
+    And jumlah pinjaman yang diajukan adalah Rp 75.000.000
+    When risk engine mengevaluasi pinjaman
+    Then hasil evaluasi adalah REJECTED
+    And alasan penolakan adalah "Credit score di bawah minimum"
