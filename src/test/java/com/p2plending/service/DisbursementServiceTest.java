@@ -40,7 +40,7 @@ public class DisbursementServiceTest {
         String loanId = "L-001";
         Loan mockLoan = mock(Loan.class);
         
-        when(mockLoan.getId()).thenReturn(loanId);
+        
         when(mockLoan.getAmount()).thenReturn(new BigDecimal("10000000"));
         when(mockLoan.getTenor()).thenReturn(12);
 
