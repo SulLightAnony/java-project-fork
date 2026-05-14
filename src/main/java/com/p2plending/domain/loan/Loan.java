@@ -63,6 +63,10 @@ public class Loan {
         return status;
     }
 
+    public void setLoanStatus(LoanStatus status) {
+        this.status = status;
+    }
+
     public void submit() {
         this.stateBehavior.submit(this);
     }
@@ -83,4 +87,6 @@ public class Loan {
         this.stateBehavior = newState;
         this.status = newStatus;
     }
+
+
 }
