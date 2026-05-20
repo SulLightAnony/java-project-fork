@@ -1,6 +1,7 @@
 package com.p2plending.service;
 
 import com.p2plending.domain.loan.Loan;
+import com.p2plending.repository.DisbursementRepository;
 import com.p2plending.repository.LoanRepository;
 import com.p2plending.interest.InterestStrategy;
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,9 @@ public class DisbursementServiceTest {
     private LoanRepository loanRepository; // Dummy repository
 
     @Mock
+    private DisbursementRepository disbursementRepository;
+
+    @Mock
     private InterestStrategy interestStrategy; // Dummy kalkulator bunga
 
     @InjectMocks
@@ -33,7 +37,9 @@ public class DisbursementServiceTest {
 
         // Asumsi pencarian loan berhasil dan mengembalikan mockLoan
         when(loanRepository.findById(loanId)).thenReturn(Optional.of(mockLoan));
-        
+        when(mockLoan.getAmount()).thenReturn(new BigDecimal("10000000"));
+        when(mockLoan.getTenor()).thenReturn(12);
+
         // Asumsi hitungan bunga dari strategy mengembalikan 1 juta
         when(interestStrategy.calculate(any(), anyInt())).thenReturn(new BigDecimal("1000000"));
 

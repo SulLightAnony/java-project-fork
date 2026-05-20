@@ -55,8 +55,12 @@ class FundingServiceTest {
     }
 
     // ─── Stub: FundingEventPublisher ─────────────────────────────────────────
-    private static class SpyEventPublisher implements FundingEventPublisher {
+    private static class SpyEventPublisher extends FundingEventPublisher {
         private final List<String> publishedLoanIds = new ArrayList<>();
+
+        public SpyEventPublisher() {
+            super(new InMemoryFundingRepository());
+        }
 
         @Override
         public void publishFundingCompleted(String loanId) {
