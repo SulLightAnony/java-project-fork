@@ -3,11 +3,8 @@ package com.p2plending.domain.disbursement;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-/**
- * Entitas yang merepresentasikan jadwal pembayaran pinjaman.
- */
 public class RepaymentSchedule {
-    private final BigDecimal totalAmountToRepay; // Pokok + Bunga
+    private final BigDecimal totalAmountToRepay; 
     private final int tenorInMonths;
     private final BigDecimal monthlyInstallment;
 
@@ -19,7 +16,6 @@ public class RepaymentSchedule {
         this.totalAmountToRepay = principal.add(totalInterest);
         this.tenorInMonths = tenorInMonths;
         
-        // Asumsi cicilan bulanan rata: (Pokok + Bunga) / Tenor
         this.monthlyInstallment = this.totalAmountToRepay.divide(new BigDecimal(tenorInMonths), 2, RoundingMode.HALF_UP);
     }
 
