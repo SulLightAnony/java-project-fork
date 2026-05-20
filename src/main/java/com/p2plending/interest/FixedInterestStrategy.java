@@ -3,6 +3,9 @@ package com.p2plending.interest;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+/**
+ * Implementasi Strategy untuk bunga tetap (Fixed Rate).
+ */
 public class FixedInterestStrategy implements InterestStrategy {
     private final BigDecimal rate;
 
@@ -18,6 +21,10 @@ public class FixedInterestStrategy implements InterestStrategy {
         if (principal == null || principal.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException("Principal must be non-negative");
         }
+        return principal.multiply(rate).setScale(2, RoundingMode.HALF_UP);
+    }
+}
+        // Asumsi kalkulasi sederhana: Pokok x Persentase Tetap
         return principal.multiply(rate).setScale(2, RoundingMode.HALF_UP);
     }
 }

@@ -11,6 +11,14 @@ public class SyariahStrategy implements InterestStrategy {
             throw new IllegalArgumentException("Margin must be non-negative");
         }
         this.margin = margin;
+/**
+ * Implementasi Strategy untuk pembiayaan Syariah (contoh: margin Murabahah).
+ */
+public class SyariahStrategy implements InterestStrategy {
+    private final BigDecimal marginBagiHasil;
+
+    public SyariahStrategy(BigDecimal marginBagiHasil) {
+        this.marginBagiHasil = marginBagiHasil;
     }
 
     @Override
@@ -19,5 +27,7 @@ public class SyariahStrategy implements InterestStrategy {
             throw new IllegalArgumentException("Principal must be non-negative");
         }
         return principal.multiply(margin).setScale(2, RoundingMode.HALF_UP);
+        // Menggunakan persentase margin bagi hasil yang sudah disepakati di awal
+        return principal.multiply(marginBagiHasil).setScale(2, RoundingMode.HALF_UP);
     }
 }

@@ -30,7 +30,7 @@ public class FundingService {
      * @param amount   Jumlah dana yang dikontribusikan
      */
     public void contribute(String loanId, String lenderId, BigDecimal amount) {
-        // 1. Pastikan pinjaman ada dan sudah dalam status PENDING
+        // 1. Pastikan pinjaman ada
         Loan loan = loanRepository.findById(loanId)
                 .orElseThrow(() -> new IllegalArgumentException("Pinjaman tidak ditemukan: " + loanId));
 
