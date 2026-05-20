@@ -4,9 +4,9 @@ import com.p2plending.domain.disbursement.Disbursement;
 import com.p2plending.domain.loan.Loan;
 import com.p2plending.repository.DisbursementRepository;
 import com.p2plending.repository.LoanRepository;
+import com.p2plending.domain.loan.LoanStatus;
+import com.p2plending.domain.loan.state.ActiveState;
 import com.p2plending.interest.InterestStrategy;
-import com.p2plending.repository.DisbursementRepository;
-import com.p2plending.repository.LoanRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -30,7 +30,7 @@ public class DisbursementServiceTest {
     private DisbursementRepository disbursementRepository;
 
     @Mock
-    private InterestStrategy interestStrategy; // Dummy kalkulator bunga
+    private InterestStrategy interestStrategy;
 
     @InjectMocks
     private DisbursementService disbursementService;
@@ -39,8 +39,15 @@ public class DisbursementServiceTest {
     void shouldDisburseLoanSuccessfully() {
         String loanId = "L-001";
         Loan mockLoan = mock(Loan.class);
+
+        // Asumsi pencarian loan berhasil dan mengembalikan mockLoan
+        when(loanRepository.findById(loanId)).thenReturn(Optional.of(mockLoan));
+        when(mockLoan.getAmount()).thenReturn(new BigDecimal("10000000"));
+        when(mockLoan.getTenor()).thenReturn(12);
+
+        // Asumsi hitungan bunga dari strategy mengembalikan 1 juta
         
-        when(mockLoan.getId()).thenReturn(loanId);
+        
         when(mockLoan.getAmount()).thenReturn(new BigDecimal("10000000"));
         when(mockLoan.getTenor()).thenReturn(12);
 

@@ -3,6 +3,9 @@ package com.p2plending.interest;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+/**
+ * Implementasi Strategy untuk bunga tetap (Fixed Rate).
+ */
 public class FixedInterestStrategy implements InterestStrategy {
     private final BigDecimal rate;
 

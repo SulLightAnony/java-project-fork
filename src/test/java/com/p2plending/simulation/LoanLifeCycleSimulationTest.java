@@ -9,16 +9,15 @@ import com.p2plending.interest.SyariahStrategy;
 import com.p2plending.repository.DisbursementRepository;
 import com.p2plending.repository.LoanRepository;
 import com.p2plending.service.DisbursementService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -32,12 +31,11 @@ public class LoanLifeCycleSimulationTest {
     @Mock
     private DisbursementRepository disbursementRepository;
 
-    private DisbursementService disbursementService;
+    @Mock
+    private InterestStrategy baseInterestStrategy;
 
-    @BeforeEach
-    void setUp() {
-        disbursementService = new DisbursementService(loanRepository, disbursementRepository);
-    }
+    @InjectMocks
+    private DisbursementService disbursementService;
 
     @Test
     void simulateEndToEndP2PLendingProcess() {
@@ -47,6 +45,7 @@ public class LoanLifeCycleSimulationTest {
 
         String loanId = "L-2026-X";
         Loan mockLoan = mock(Loan.class);
+        
         when(mockLoan.getAmount()).thenReturn(new BigDecimal("50000000"));
         when(mockLoan.getTenor()).thenReturn(12);
 
@@ -70,7 +69,7 @@ public class LoanLifeCycleSimulationTest {
         Disbursement result = disbursementService.disburseLoan(loanId, strategy);
 
         System.out.println("    -> Uang berhasil ditransfer ke rekening Borrower!");
-        System.out.println("    -> 'State Pattern': Status Pinjaman dikunci menjadi ACTIVE.");
+        System.out.println("    -> 'State Pattern': Status Pinjaman dikunci menjadi DISBURSED.");
         
         System.out.println("\n[5] JADWAL PEMBAYARAN (REPAYMENT SCHEDULE)");
         System.out.println("    -> Total Pokok + Margin yang harus dibayar : Rp " + result.getRepaymentSchedule().getTotalAmountToRepay());
@@ -81,8 +80,8 @@ public class LoanLifeCycleSimulationTest {
         System.out.println("======================================================");
 
         assertNotNull(result);
-        verify(mockLoan).setStatus(LoanStatus.ACTIVE);
-        verify(mockLoan).setState(any(ActiveState.class));
+        verify(mockLoan).setLoanStatus(LoanStatus.DISBURSED); 
+        verify(mockLoan).setLoanState(any(ActiveState.class));
         verify(disbursementRepository).save(any(Disbursement.class));
     }
 }

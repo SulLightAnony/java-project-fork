@@ -1,30 +1,45 @@
 package com.p2plending.domain.disbursement;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
+/**
+ * Entitas yang mencatat rekam jejak pencairan dana ke Borrower.
+ */
 public class Disbursement {
+    private final String id;
     private final String loanId;
-    private final BigDecimal amount;
-    private final BigDecimal interest;
+    private final BigDecimal disbursedAmount;
+    private final LocalDateTime disbursementDate;
     private final RepaymentSchedule repaymentSchedule;
 
-    public Disbursement(String loanId, BigDecimal amount, BigDecimal interest, RepaymentSchedule repaymentSchedule) {
+    public Disbursement(String loanId, BigDecimal disbursedAmount, RepaymentSchedule repaymentSchedule) {
+        if (disbursedAmount == null || disbursedAmount.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("Jumlah pencairan harus lebih besar dari 0.");
+        }
+
+        this.id = UUID.randomUUID().toString();
         this.loanId = loanId;
-        this.amount = amount;
-        this.interest = interest;
+        this.disbursedAmount = disbursedAmount;
+        this.disbursementDate = LocalDateTime.now();
         this.repaymentSchedule = repaymentSchedule;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getLoanId() {
         return loanId;
     }
 
-    public BigDecimal getAmount() {
-        return amount;
+    public BigDecimal getDisbursedAmount() {
+        return disbursedAmount;
     }
 
-    public BigDecimal getInterest() {
-        return interest;
+    public LocalDateTime getDisbursementDate() {
+        return disbursementDate;
     }
 
     public RepaymentSchedule getRepaymentSchedule() {

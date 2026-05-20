@@ -1,4 +1,5 @@
-package com.p2plending.domain.funding;
+package com.p2plending.notification;
+import com.p2plending.domain.funding.Funding;
 
 /**
  * Observer interface untuk menerima notifikasi event pada proses funding.

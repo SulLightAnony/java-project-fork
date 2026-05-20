@@ -10,21 +10,17 @@ import com.p2plending.repository.DisbursementRepository;
 import com.p2plending.repository.LoanRepository;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
+/**
+ * Service utama untuk mengurus pencairan dana (Disbursement).
+ * Bertindak sebagai Orkestrator antar Domain, Repository, dan Strategy.
+ */
 public class DisbursementService {
-
     private final LoanRepository loanRepository;
     private final DisbursementRepository disbursementRepository;
     private final InterestStrategy interestStrategy;
 
-    public DisbursementService(LoanRepository loanRepository, DisbursementRepository disbursementRepository) {
-        this(loanRepository, disbursementRepository, null);
-    }
-
-    public DisbursementService(LoanRepository loanRepository,
-                               DisbursementRepository disbursementRepository,
-                               InterestStrategy interestStrategy) {
+    public DisbursementService(LoanRepository loanRepository, DisbursementRepository disbursementRepository, InterestStrategy interestStrategy) {
         this.loanRepository = loanRepository;
         this.disbursementRepository = disbursementRepository;
         this.interestStrategy = interestStrategy;
@@ -37,27 +33,32 @@ public class DisbursementService {
         return disburseLoan(loanId, interestStrategy);
     }
 
-    public Disbursement disburseLoan(String loanId, InterestStrategy strategy) {
+    public Disbursement disburseLoan(String loanId, InterestStrategy interestStrategy) {
+        // 1. Validasi & Ambil data Loan
         Loan loan = loanRepository.findById(loanId)
-                .orElseThrow(() -> new IllegalArgumentException("Loan not found: " + loanId));
+                .orElseThrow(() -> new IllegalArgumentException("Pinjaman dengan ID " + loanId + " tidak ditemukan."));
 
-        BigDecimal interest = strategy.calculate(loan.getAmount(), loan.getTenor());
-        BigDecimal totalRepayment = loan.getAmount().add(interest).setScale(2, RoundingMode.HALF_UP);
-        BigDecimal monthlyInstallment = totalRepayment.divide(new BigDecimal(loan.getTenor()), 2, RoundingMode.HALF_UP);
+        // 2. Ambil data dasar pinjaman
+        BigDecimal principal = loan.getAmount();
+        int tenor = loan.getTenor();
 
-        RepaymentSchedule schedule = new RepaymentSchedule(totalRepayment, monthlyInstallment);
-        Disbursement disbursement = new Disbursement(loanId, loan.getAmount(), interest, schedule);
+        // 3. Kalkulasi Bunga
+        BigDecimal totalInterest = interestStrategy.calculate(principal, tenor);
 
-        loan.disburse();
-        loan.setStatus(LoanStatus.ACTIVE);
-        loan.setState(new ActiveState());
+        // 4. Buat jadwal cicilan (sesuai konstruktor RepaymentSchedule yang tersedia)
+        RepaymentSchedule schedule = new RepaymentSchedule(principal, totalInterest, tenor);
+
+        // 5. Ubah state Loan menjadi DISBURSED / ACTIVE
+        loan.setLoanStatus(LoanStatus.DISBURSED);
+        loan.setLoanState(new ActiveState());
+
+        // 6. Catat bukti pencairan
+        Disbursement disbursement = new Disbursement(loanId, principal, schedule);
+
+        // 7. Simpan perubahan ke Repository
         loanRepository.save(loan);
         disbursementRepository.save(disbursement);
 
         return disbursement;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 12966222ce23a6d3b9138e9079d137d30f3e4c72

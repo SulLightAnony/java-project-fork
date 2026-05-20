@@ -4,13 +4,10 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class SyariahStrategy implements InterestStrategy {
-    private final BigDecimal margin;
+    private final BigDecimal marginBagiHasil;
 
-    public SyariahStrategy(BigDecimal margin) {
-        if (margin == null || margin.compareTo(BigDecimal.ZERO) < 0) {
-            throw new IllegalArgumentException("Margin must be non-negative");
-        }
-        this.margin = margin;
+    public SyariahStrategy(BigDecimal marginBagiHasil) {
+        this.marginBagiHasil = marginBagiHasil;
     }
 
     @Override
@@ -18,6 +15,6 @@ public class SyariahStrategy implements InterestStrategy {
         if (principal == null || principal.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException("Principal must be non-negative");
         }
-        return principal.multiply(margin).setScale(2, RoundingMode.HALF_UP);
+        return principal.multiply(marginBagiHasil).setScale(2, RoundingMode.HALF_UP);
     }
 }
