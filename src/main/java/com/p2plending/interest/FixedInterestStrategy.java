@@ -24,7 +24,3 @@ public class FixedInterestStrategy implements InterestStrategy {
         return principal.multiply(rate).setScale(2, RoundingMode.HALF_UP);
     }
 }
-        // Asumsi kalkulasi sederhana: Pokok x Persentase Tetap
-        return principal.multiply(rate).setScale(2, RoundingMode.HALF_UP);
-    }
-}

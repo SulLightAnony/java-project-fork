@@ -1,20 +1,6 @@
 package com.p2plending.domain.disbursement;
 
 import java.math.BigDecimal;
-
-public class Disbursement {
-    private final String loanId;
-    private final BigDecimal amount;
-    private final BigDecimal interest;
-    private final RepaymentSchedule repaymentSchedule;
-
-    public Disbursement(String loanId, BigDecimal amount, BigDecimal interest, RepaymentSchedule repaymentSchedule) {
-        this.loanId = loanId;
-        this.amount = amount;
-        this.interest = interest;
-        this.repaymentSchedule = repaymentSchedule;
-    }
-
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -33,10 +19,10 @@ public class Disbursement {
             throw new IllegalArgumentException("Jumlah pencairan harus lebih besar dari 0.");
         }
 
-        this.id = UUID.randomUUID().toString(); // Generate ID unik secara otomatis
+        this.id = UUID.randomUUID().toString();
         this.loanId = loanId;
         this.disbursedAmount = disbursedAmount;
-        this.disbursementDate = LocalDateTime.now(); // Tanggal pencairan adalah saat objek ini dibuat
+        this.disbursementDate = LocalDateTime.now();
         this.repaymentSchedule = repaymentSchedule;
     }
 
@@ -48,12 +34,6 @@ public class Disbursement {
         return loanId;
     }
 
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public BigDecimal getInterest() {
-        return interest;
     public BigDecimal getDisbursedAmount() {
         return disbursedAmount;
     }
@@ -66,4 +46,4 @@ public class Disbursement {
         return repaymentSchedule;
     }
 }
-}
+

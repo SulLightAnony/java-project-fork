@@ -7,8 +7,6 @@ import com.p2plending.repository.LoanRepository;
 import com.p2plending.domain.loan.LoanStatus;
 import com.p2plending.domain.loan.state.ActiveState;
 import com.p2plending.interest.InterestStrategy;
-import com.p2plending.repository.DisbursementRepository;
-import com.p2plending.repository.LoanRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -32,7 +30,6 @@ public class DisbursementServiceTest {
     private DisbursementRepository disbursementRepository;
 
     @Mock
-    private InterestStrategy interestStrategy; // Dummy kalkulator bunga
     private InterestStrategy interestStrategy;
 
     @InjectMocks

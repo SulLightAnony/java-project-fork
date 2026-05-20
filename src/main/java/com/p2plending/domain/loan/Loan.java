@@ -79,6 +79,8 @@ public class Loan {
     public void disburse() {
         this.status = LoanStatus.ACTIVE;
         this.stateBehavior = new ActiveState();
+    }
+
     public void setLoanState(LoanState state) {
         this.stateBehavior = state;
     }
@@ -102,9 +104,6 @@ public class Loan {
     public void updateState(LoanState newState, LoanStatus newStatus) {
         this.stateBehavior = newState;
         this.status = newStatus;
-    }
-    public void disburse() {
-    // TODO: akan diimplementasikan oleh tim Disbursement
     }
 
 }

@@ -4,7 +4,6 @@ import com.p2plending.domain.funding.Funding;
 import com.p2plending.domain.loan.Borrower;
 import com.p2plending.domain.loan.Loan;
 import com.p2plending.notification.FundingEventPublisher;
-import com.p2plending.repository.BorrowerRepository;
 import com.p2plending.repository.FundingRepository;
 import com.p2plending.repository.LoanRepository;
 
@@ -55,11 +54,11 @@ class FundingServiceTest {
     }
 
     // ─── Stub: FundingEventPublisher ─────────────────────────────────────────
-    private static class SpyEventPublisher extends FundingEventPublisher {
+    private static class SpyEventPublisher implements FundingEventPublisher {
         private final List<String> publishedLoanIds = new ArrayList<>();
 
         public SpyEventPublisher() {
-            super(new InMemoryFundingRepository());
+            // no-op
         }
 
         @Override

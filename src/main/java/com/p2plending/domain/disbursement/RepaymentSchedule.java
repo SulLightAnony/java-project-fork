@@ -1,14 +1,6 @@
 package com.p2plending.domain.disbursement;
 
 import java.math.BigDecimal;
-
-public class RepaymentSchedule {
-    private final BigDecimal totalAmountToRepay;
-    private final BigDecimal monthlyInstallment;
-
-    public RepaymentSchedule(BigDecimal totalAmountToRepay, BigDecimal monthlyInstallment) {
-        this.totalAmountToRepay = totalAmountToRepay;
-        this.monthlyInstallment = monthlyInstallment;
 import java.math.RoundingMode;
 
 /**
@@ -38,12 +30,8 @@ public class RepaymentSchedule {
     public BigDecimal getMonthlyInstallment() {
         return monthlyInstallment;
     }
-}
+
     public int getTenorInMonths() {
         return tenorInMonths;
-    }
-
-    public BigDecimal getMonthlyInstallment() {
-        return monthlyInstallment;
     }
 }

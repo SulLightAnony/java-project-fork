@@ -2,9 +2,6 @@ package com.p2plending.interest;
 
 import java.math.BigDecimal;
 
-public interface InterestStrategy {
-    BigDecimal calculate(BigDecimal principal, int tenorInMonths);
-}
 /**
  * Interface induk untuk GoF Strategy Pattern.
  * Digunakan untuk menghitung bunga/margin secara dinamis.
