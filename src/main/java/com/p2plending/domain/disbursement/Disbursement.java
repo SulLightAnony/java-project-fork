@@ -19,10 +19,10 @@ public class Disbursement {
             throw new IllegalArgumentException("Jumlah pencairan harus lebih besar dari 0.");
         }
 
-        this.id = UUID.randomUUID().toString(); // Generate ID unik secara otomatis
+        this.id = UUID.randomUUID().toString();
         this.loanId = loanId;
         this.disbursedAmount = disbursedAmount;
-        this.disbursementDate = LocalDateTime.now(); // Tanggal pencairan adalah saat objek ini dibuat
+        this.disbursementDate = LocalDateTime.now();
         this.repaymentSchedule = repaymentSchedule;
     }
 
@@ -46,3 +46,4 @@ public class Disbursement {
         return repaymentSchedule;
     }
 }
+

@@ -6,6 +6,7 @@ public enum LoanStatus {
     REVIEWING,  // Sedang dalam proses review
     FUNDING,    // Sedang dalam proses pendanaan
     FUNDED,     // Dana sudah terpenuhi
+    ACTIVE,     // Pinjaman aktif setelah pencairan
     DISBURSED,  // Dana sudah dicairkan
     REPAYMENT,  // Dalam proses pembayaran kembali
     COMPLETED,  // Pinjaman lunas

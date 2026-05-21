@@ -1,6 +1,5 @@
-package com.p2plending.domain.funding;
-
-import com.p2plending.notification.EmailService;
+package com.p2plending.notification;
+import com.p2plending.domain.funding.Funding;
 
 /**
  * Implementasi FundingObserver yang mengirim notifikasi via email

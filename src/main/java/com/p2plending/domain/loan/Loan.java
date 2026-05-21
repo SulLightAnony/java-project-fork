@@ -1,5 +1,6 @@
 package com.p2plending.domain.loan;
 
+import com.p2plending.domain.loan.state.ActiveState;
 import com.p2plending.domain.loan.state.DraftState;
 import com.p2plending.domain.loan.state.LoanState;
 import java.math.BigDecimal;
@@ -67,6 +68,19 @@ public class Loan {
         this.status = status;
     }
 
+    public void setStatus(LoanStatus status) {
+        this.status = status;
+    }
+
+    public void setState(LoanState stateBehavior) {
+        this.stateBehavior = stateBehavior;
+    }
+
+    public void disburse() {
+        this.status = LoanStatus.ACTIVE;
+        this.stateBehavior = new ActiveState();
+    }
+
     public void setLoanState(LoanState state) {
         this.stateBehavior = state;
     }
@@ -90,9 +104,6 @@ public class Loan {
     public void updateState(LoanState newState, LoanStatus newStatus) {
         this.stateBehavior = newState;
         this.status = newStatus;
-    }
-    public void disburse() {
-    // TODO: akan diimplementasikan oleh tim Disbursement
     }
 
 }

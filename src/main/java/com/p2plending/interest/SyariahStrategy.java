@@ -3,9 +3,6 @@ package com.p2plending.interest;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-/**
- * Implementasi Strategy untuk pembiayaan Syariah (contoh: margin Murabahah).
- */
 public class SyariahStrategy implements InterestStrategy {
     private final BigDecimal marginBagiHasil;
 
@@ -15,7 +12,9 @@ public class SyariahStrategy implements InterestStrategy {
 
     @Override
     public BigDecimal calculate(BigDecimal principal, int tenorInMonths) {
-        // Menggunakan persentase margin bagi hasil yang sudah disepakati di awal
+        if (principal == null || principal.compareTo(BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException("Principal must be non-negative");
+        }
         return principal.multiply(marginBagiHasil).setScale(2, RoundingMode.HALF_UP);
     }
 }

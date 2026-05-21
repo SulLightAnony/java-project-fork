@@ -27,11 +27,11 @@ public class RepaymentSchedule {
         return totalAmountToRepay;
     }
 
-    public int getTenorInMonths() {
-        return tenorInMonths;
-    }
-
     public BigDecimal getMonthlyInstallment() {
         return monthlyInstallment;
+    }
+
+    public int getTenorInMonths() {
+        return tenorInMonths;
     }
 }
