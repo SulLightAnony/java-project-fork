@@ -71,4 +71,28 @@ class LoanApplicationServiceTest {
         });
         assertEquals("Insufficient borrowing limit", exception.getMessage());
     }
+
+    @Test
+    void apply_UMKM_ExceedMaxAmount_ShouldThrowException(){
+        Borrower mockBorrower = new Borrower("B001", "Ismail", 600, new BigDecimal("1000000000"));
+        when(borrowerRepository.findById("B001")).thenReturn(Optional.of(mockBorrower));
+
+        // Act & Assert
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            service.apply("B001", new BigDecimal("600000000"), 35, "Modal",LoanType.UMKM);
+        });
+        assertTrue(exception.getMessage().contains("UMKM"));
+    }
+
+    @Test
+    void apply_KONSUMTIF_ExceedMaxTenor_ShouldThrowException(){
+        Borrower mockBorrower = new Borrower("B001", "Ismail", 600, new BigDecimal("1000000000"));
+        when(borrowerRepository.findById("B001")).thenReturn(Optional.of(mockBorrower));
+
+        // Act & Assert
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            service.apply("B001", new BigDecimal("30000000"), 26, "Modal",LoanType.KONSUMTIF);
+        });
+        assertTrue(exception.getMessage().contains("KONSUMTIF"));
+    }
 }
