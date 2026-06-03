@@ -69,7 +69,7 @@ public class Loan {
     }
 
     public void setStatus(LoanStatus status) {
-        this.status = status;
+        setLoanStatus(status);
     }
 
     public void setState(LoanState stateBehavior) {

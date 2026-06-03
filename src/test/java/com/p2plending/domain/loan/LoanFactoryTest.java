@@ -21,11 +21,14 @@ class LoanFactoryTest {
     }
 
     @Test
-    void createLoan_UMKM_ExceedMaxAmount_ShouldThrowException(){
+    void createLoan_UMKM_ExceedMaxAmount_ShouldThrowException() {
         Borrower borrower = createBorrower(new BigDecimal("999999999"));
+        
+        BigDecimal loanAmount = new BigDecimal("500000001");
 
         assertThrows(IllegalArgumentException.class, () -> 
-            LoanFactory.createLoan(LoanType.UMKM, borrower, new BigDecimal("500000001"), 24, "Modal usaha", "LOAN-X"));
+            LoanFactory.createLoan(LoanType.UMKM, borrower, loanAmount, 24, "Modal usaha", "LOAN-X")
+        );
     }
 
     @Test

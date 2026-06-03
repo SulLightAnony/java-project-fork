@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 public abstract class LoanDecorator implements LoanCost {
     protected final LoanCost inner;
 
-    public LoanDecorator(LoanCost inner) {
+    protected LoanDecorator(LoanCost inner) {
         this.inner = inner;
     }
 
