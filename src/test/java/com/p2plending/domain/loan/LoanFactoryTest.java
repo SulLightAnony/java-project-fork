@@ -3,6 +3,7 @@ package com.p2plending.domain.loan;
 import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.function.Executable;
 
 class LoanFactoryTest {
     private Borrower createBorrower(BigDecimal limit){
@@ -21,18 +22,23 @@ class LoanFactoryTest {
     }
 
     @Test
-    void createLoan_UMKM_ExceedMaxAmount_ShouldThrowException(){
+    void createLoan_UMKM_ExceedMaxAmount_ShouldThrowException() {
         Borrower borrower = createBorrower(new BigDecimal("999999999"));
+        BigDecimal loanAmount = new BigDecimal("500000001");
 
-        assertThrows(IllegalArgumentException.class, () -> 
-            LoanFactory.createLoan(LoanType.UMKM, borrower, new BigDecimal("500000001"), 24, "Modal usaha", "LOAN-X"));
+        Executable executable = () ->
+            LoanFactory.createLoan(LoanType.UMKM, borrower, loanAmount, 24, "Modal usaha", "LOAN-X");
+
+        assertThrows(IllegalArgumentException.class, executable);
     }
 
     @Test
-    void createLoan_KONSUMTIF_ExceedMaxTenor_ShouldThrowException(){
+    void createLoan_KONSUMTIF_ExceedMaxTenor_ShouldThrowException() {
         Borrower borrower = createBorrower(new BigDecimal("999999999"));
 
-        assertThrows(IllegalArgumentException.class, () -> 
-            LoanFactory.createLoan(LoanType.KONSUMTIF, borrower, new BigDecimal("500000"), 25, "Modal usaha", "LOAN-X"));
+        Executable executable = () ->
+            LoanFactory.createLoan(LoanType.KONSUMTIF, borrower, new BigDecimal("500000"), 25, "Modal usaha", "LOAN-X");
+
+        assertThrows(IllegalArgumentException.class, executable);
     }
 }

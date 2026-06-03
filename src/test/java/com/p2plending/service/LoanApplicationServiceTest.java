@@ -10,6 +10,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.junit.jupiter.api.function.Executable;
 
 import java.math.BigDecimal;
 import java.util.Optional;
@@ -52,9 +53,10 @@ class LoanApplicationServiceTest {
         when(borrowerRepository.findById("B002")).thenReturn(Optional.of(lowScoreBorrower));
 
         // Act & Assert
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            service.apply("B002", new BigDecimal("1000000"), 12, "Kebutuhan",LoanType.KONSUMTIF);
-        });
+        Executable executable = () ->
+            service.apply("B002", new BigDecimal("1000000"), 12, "Kebutuhan", LoanType.KONSUMTIF);
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, executable);
         assertEquals("Borrower is not eligible for a loan", exception.getMessage());
         verify(loanRepository, never()).save(any());
     }
@@ -66,33 +68,36 @@ class LoanApplicationServiceTest {
         when(borrowerRepository.findById("B001")).thenReturn(Optional.of(mockBorrower));
 
         // Act & Assert
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            service.apply("B001", new BigDecimal("2000000"), 12, "Modal",LoanType.UMKM);
-        });
+        Executable executable = () ->
+            service.apply("B001", new BigDecimal("2000000"), 12, "Modal", LoanType.UMKM);
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, executable);
         assertEquals("Insufficient borrowing limit", exception.getMessage());
     }
 
     @Test
-    void apply_UMKM_ExceedMaxAmount_ShouldThrowException(){
+    void apply_UMKM_ExceedMaxAmount_ShouldThrowException() {
         Borrower mockBorrower = new Borrower("B001", "Ismail", 600, new BigDecimal("1000000000"));
         when(borrowerRepository.findById("B001")).thenReturn(Optional.of(mockBorrower));
 
         // Act & Assert
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            service.apply("B001", new BigDecimal("600000000"), 35, "Modal",LoanType.UMKM);
-        });
+        Executable executable = () ->
+            service.apply("B001", new BigDecimal("600000000"), 35, "Modal", LoanType.UMKM);
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, executable);
         assertTrue(exception.getMessage().contains("UMKM"));
     }
 
     @Test
-    void apply_KONSUMTIF_ExceedMaxTenor_ShouldThrowException(){
+    void apply_KONSUMTIF_ExceedMaxTenor_ShouldThrowException() {
         Borrower mockBorrower = new Borrower("B001", "Ismail", 600, new BigDecimal("1000000000"));
         when(borrowerRepository.findById("B001")).thenReturn(Optional.of(mockBorrower));
 
         // Act & Assert
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            service.apply("B001", new BigDecimal("30000000"), 26, "Modal",LoanType.KONSUMTIF);
-        });
+        Executable executable = () ->
+            service.apply("B001", new BigDecimal("30000000"), 26, "Modal", LoanType.KONSUMTIF);
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, executable);
         assertTrue(exception.getMessage().contains("KONSUMTIF"));
     }
 }

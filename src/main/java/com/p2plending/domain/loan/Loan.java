@@ -15,7 +15,7 @@ public class Loan {
     private final LocalDateTime createdAt;
 
     private LoanStatus status;
-    private transient LoanState stateBehavior;
+    private LoanState stateBehavior;
 
     public Loan(String id, Borrower borrower, BigDecimal amount, int tenor, String purpose) {
         // Validasi Domain: Mencegah pembuatan objek jika limit tidak cukup
@@ -69,7 +69,7 @@ public class Loan {
     }
 
     public void setStatus(LoanStatus status) {
-        this.status = status;
+        setLoanStatus(status);
     }
 
     public void setState(LoanState stateBehavior) {
