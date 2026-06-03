@@ -11,6 +11,10 @@ import com.p2plending.repository.LoanRepository;
 
 import java.math.BigDecimal;
 
+import com.p2plending.domain.loan.decorator.LoanCost;
+import com.p2plending.domain.loan.decorator.SimpleLoan;
+import com.p2plending.domain.loan.decorator.PlatformFeeDecorator;
+
 /**
  * Service utama untuk mengurus pencairan dana (Disbursement).
  * Bertindak sebagai Orkestrator antar Domain, Repository, dan Strategy.
@@ -47,6 +51,10 @@ public class DisbursementService {
 
         loan.setLoanStatus(LoanStatus.DISBURSED);
         loan.setLoanState(new ActiveState());
+
+        LoanCost totalCostStructure = new PlatformFeeDecorator(new SimpleLoan(principal), new BigDecimal("50000"));
+        BigDecimal totalCost = totalCostStructure.getCost();
+        System.out.println("Applying total cost structure: " + totalCostStructure.getDescription() + " = " + totalCost);
 
         Disbursement disbursement = new Disbursement(loanId, principal, schedule);
 
