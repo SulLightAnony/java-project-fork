@@ -3,6 +3,7 @@ package com.p2plending.stepdefs;
 import com.p2plending.domain.loan.Borrower;
 import com.p2plending.domain.loan.Loan;
 import com.p2plending.domain.loan.LoanStatus;
+import com.p2plending.domain.loan.LoanType;
 import com.p2plending.repository.BorrowerRepository;
 import com.p2plending.repository.LoanRepository;
 import com.p2plending.repository.impl.InMemoryBorrowerRepository;
@@ -37,7 +38,7 @@ public class LoanApplicationSteps {
     @When("Borrower mengajukan pinjaman sebesar {double} dengan tenor {int} bulan untuk {string}")
     public void borrower_mengajukan_pinjaman_sebesar_dengan_tenor_bulan_untuk(double amount, int tenor, String purpose) {
         try {
-            lastLoanId = loanService.apply(currentBorrower.getId(), BigDecimal.valueOf(amount), tenor, purpose);
+            lastLoanId = loanService.apply(currentBorrower.getId(), BigDecimal.valueOf(amount), tenor, purpose,LoanType.UMKM);
         } catch (Exception e) {
             lastException = e;
         }
@@ -69,7 +70,7 @@ public class LoanApplicationSteps {
         // Setup initial loan for transition test
         Borrower b = new Borrower("B999", "Test", 700, BigDecimal.valueOf(10000000));
         borrowerRepository.save(b);
-        lastLoanId = loanService.apply(b.getId(), BigDecimal.valueOf(1000000), 12, "Test");
+        lastLoanId = loanService.apply(b.getId(), BigDecimal.valueOf(1000000), 12, "Test",LoanType.KONSUMTIF);
         // Status is DRAFT by default, if we need PENDING we'd call submit()
     }
 

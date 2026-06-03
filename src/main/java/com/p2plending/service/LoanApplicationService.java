@@ -2,6 +2,8 @@ package com.p2plending.service;
 
 import com.p2plending.domain.loan.Borrower;
 import com.p2plending.domain.loan.Loan;
+import com.p2plending.domain.loan.LoanFactory;
+import com.p2plending.domain.loan.LoanType;
 import com.p2plending.repository.BorrowerRepository;
 import com.p2plending.repository.LoanRepository;
 
@@ -18,7 +20,7 @@ public class LoanApplicationService {
         this.loanRepository = loanRepository;
     }
 
-    public String apply(String borrowerId, BigDecimal amount, int tenor, String purpose) {
+    public String apply(String borrowerId, BigDecimal amount, int tenor, String purpose,LoanType loanType) {
         Borrower borrower = borrowerRepository.findById(borrowerId)
                 .orElseThrow(() -> new IllegalArgumentException("Borrower not found"));
 
@@ -31,7 +33,7 @@ public class LoanApplicationService {
         }
 
         String loanId = UUID.randomUUID().toString();
-        Loan loan = new Loan(loanId, borrower, amount, tenor, purpose);
+        Loan loan = LoanFactory.createLoan(loanType, borrower, amount, tenor, purpose, loanId);
 
         loanRepository.save(loan);
         borrowerRepository.save(borrower);

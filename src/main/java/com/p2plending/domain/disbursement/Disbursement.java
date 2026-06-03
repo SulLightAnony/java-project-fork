@@ -4,9 +4,6 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-/**
- * Entitas yang mencatat rekam jejak pencairan dana ke Borrower.
- */
 public class Disbursement {
     private final String id;
     private final String loanId;
