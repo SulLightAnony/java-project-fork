@@ -3,6 +3,7 @@ package com.p2plending.domain.loan;
 import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.function.Executable;
 
 class LoanTest {
 
@@ -18,10 +19,11 @@ class LoanTest {
     @Test
     void createLoan_ExceedsLimit_ThrowsException() {
         Borrower borrower = new Borrower("B002", "Basyir", 600, new BigDecimal("5000000"));
-        
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+
+        Executable executable = () ->
             new Loan("L002", borrower, new BigDecimal("8000000"), 12, "Renovasi");
-        });
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, executable);
         assertEquals("Limit pinjaman tidak mencukupi", exception.getMessage());
     }
 
