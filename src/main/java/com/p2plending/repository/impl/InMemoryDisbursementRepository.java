@@ -9,13 +9,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
-/**
- * Implementasi In-Memory untuk DisbursementRepository.
- * Bertindak sebagai database sementara menggunakan Map.
- */
 public class InMemoryDisbursementRepository implements DisbursementRepository {
     
-    // Menggunakan ConcurrentHashMap agar aman untuk multi-threading (Thread-safe)
     private final Map<String, Disbursement> store = new ConcurrentHashMap<>();
 
     @Override

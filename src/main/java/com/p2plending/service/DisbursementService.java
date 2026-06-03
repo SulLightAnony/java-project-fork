@@ -11,6 +11,10 @@ import com.p2plending.repository.LoanRepository;
 
 import java.math.BigDecimal;
 
+import com.p2plending.domain.loan.decorator.LoanCost;
+import com.p2plending.domain.loan.decorator.SimpleLoan;
+import com.p2plending.domain.loan.decorator.PlatformFeeDecorator;
+
 /**
  * Service utama untuk mengurus pencairan dana (Disbursement).
  * Bertindak sebagai Orkestrator antar Domain, Repository, dan Strategy.
@@ -34,28 +38,26 @@ public class DisbursementService {
     }
 
     public Disbursement disburseLoan(String loanId, InterestStrategy interestStrategy) {
-        // 1. Validasi & Ambil data Loan
+        
         Loan loan = loanRepository.findById(loanId)
                 .orElseThrow(() -> new IllegalArgumentException("Pinjaman dengan ID " + loanId + " tidak ditemukan."));
 
-        // 2. Ambil data dasar pinjaman
         BigDecimal principal = loan.getAmount();
         int tenor = loan.getTenor();
 
-        // 3. Kalkulasi Bunga
         BigDecimal totalInterest = interestStrategy.calculate(principal, tenor);
 
-        // 4. Buat jadwal cicilan (sesuai konstruktor RepaymentSchedule yang tersedia)
         RepaymentSchedule schedule = new RepaymentSchedule(principal, totalInterest, tenor);
 
-        // 5. Ubah state Loan menjadi DISBURSED / ACTIVE
         loan.setLoanStatus(LoanStatus.DISBURSED);
         loan.setLoanState(new ActiveState());
 
-        // 6. Catat bukti pencairan
+        LoanCost totalCostStructure = new PlatformFeeDecorator(new SimpleLoan(principal), new BigDecimal("50000"));
+        BigDecimal totalCost = totalCostStructure.getCost();
+        System.out.println("Applying total cost structure: " + totalCostStructure.getDescription() + " = " + totalCost);
+
         Disbursement disbursement = new Disbursement(loanId, principal, schedule);
 
-        // 7. Simpan perubahan ke Repository
         loanRepository.save(loan);
         disbursementRepository.save(disbursement);
 
