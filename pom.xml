@@ -69,6 +69,15 @@
           <argLine>-Dnet.bytebuddy.experimental=true</argLine>
         </configuration>
       </plugin>
+      <!-- Exec Maven Plugin: configurasi mainClass default -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.6.3</version>
+        <configuration>
+          <mainClass>com.p2plending.Main</mainClass>
+        </configuration>
+      </plugin>
     </plugins>
 
     <pluginManagement>
