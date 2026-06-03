@@ -2,6 +2,7 @@ package com.p2plending.service;
 
 import com.p2plending.domain.loan.Borrower;
 import com.p2plending.domain.loan.Loan;
+import com.p2plending.domain.loan.LoanType;
 import com.p2plending.repository.BorrowerRepository;
 import com.p2plending.repository.LoanRepository;
 import org.junit.jupiter.api.Test;
@@ -36,7 +37,7 @@ class LoanApplicationServiceTest {
         when(borrowerRepository.findById("B001")).thenReturn(Optional.of(mockBorrower));
 
         // Act
-        String loanId = service.apply("B001", new BigDecimal("4000000"), 12, "Modal Usaha");
+        String loanId = service.apply("B001", new BigDecimal("4000000"), 12, "Modal Usaha",LoanType.KONSUMTIF);
 
         // Assert
         assertNotNull(loanId);
@@ -52,7 +53,7 @@ class LoanApplicationServiceTest {
 
         // Act & Assert
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            service.apply("B002", new BigDecimal("1000000"), 12, "Kebutuhan");
+            service.apply("B002", new BigDecimal("1000000"), 12, "Kebutuhan",LoanType.KONSUMTIF);
         });
         assertEquals("Borrower is not eligible for a loan", exception.getMessage());
         verify(loanRepository, never()).save(any());
@@ -66,8 +67,32 @@ class LoanApplicationServiceTest {
 
         // Act & Assert
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            service.apply("B001", new BigDecimal("2000000"), 12, "Modal");
+            service.apply("B001", new BigDecimal("2000000"), 12, "Modal",LoanType.UMKM);
         });
         assertEquals("Insufficient borrowing limit", exception.getMessage());
+    }
+
+    @Test
+    void apply_UMKM_ExceedMaxAmount_ShouldThrowException(){
+        Borrower mockBorrower = new Borrower("B001", "Ismail", 600, new BigDecimal("1000000000"));
+        when(borrowerRepository.findById("B001")).thenReturn(Optional.of(mockBorrower));
+
+        // Act & Assert
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            service.apply("B001", new BigDecimal("600000000"), 35, "Modal",LoanType.UMKM);
+        });
+        assertTrue(exception.getMessage().contains("UMKM"));
+    }
+
+    @Test
+    void apply_KONSUMTIF_ExceedMaxTenor_ShouldThrowException(){
+        Borrower mockBorrower = new Borrower("B001", "Ismail", 600, new BigDecimal("1000000000"));
+        when(borrowerRepository.findById("B001")).thenReturn(Optional.of(mockBorrower));
+
+        // Act & Assert
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            service.apply("B001", new BigDecimal("30000000"), 26, "Modal",LoanType.KONSUMTIF);
+        });
+        assertTrue(exception.getMessage().contains("KONSUMTIF"));
     }
 }
