@@ -9,10 +9,10 @@ import java.math.RoundingMode;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class LoanDecoratorTest {
+class LoanDecoratorTest {
 
     @Test
-    public void shouldReturnBasePrincipalForSimpleLoan() {
+    void shouldReturnBasePrincipalForSimpleLoan() {
         BigDecimal principal = new BigDecimal("1000000.00");
         LoanCost loanCost = new SimpleLoan(principal);
 
@@ -21,7 +21,7 @@ public class LoanDecoratorTest {
     }
 
     @Test
-    public void shouldAccumulateCostAndDescriptionWithPlatformFee() {
+    void shouldAccumulateCostAndDescriptionWithPlatformFee() {
         BigDecimal principal = new BigDecimal("1000000.00");
         BigDecimal fee = new BigDecimal("50000.00");
         
