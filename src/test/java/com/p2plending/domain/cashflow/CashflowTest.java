@@ -37,8 +37,9 @@ class CashflowTest {
     @Test
     @DisplayName("SingleCashflow menolak amount negatif")
     void shouldRejectNegativeAmount() {
+        BigDecimal negativeAmount = new BigDecimal("-1000");
         assertThrows(IllegalArgumentException.class, () ->
-            new SingleCashflow(CashflowType.PRINCIPAL, new BigDecimal("-1000"))
+            new SingleCashflow(CashflowType.PRINCIPAL, negativeAmount)
         );
     }
 

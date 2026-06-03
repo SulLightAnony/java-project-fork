@@ -1,13 +1,15 @@
 package com.p2plending.domain.funding;
 
+import java.math.BigDecimal;
+import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.math.BigDecimal;
-import java.util.Set;
 
 @DisplayName("Funding Domain Tests")
 class FundingTest {
@@ -88,8 +90,9 @@ class FundingTest {
     void shouldRejectContributionExceedingRemainingTarget() {
         funding.addContribution("LENDER-A", new BigDecimal("9500000"));
 
+        BigDecimal excessAmount = new BigDecimal("2000000");
         IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () ->
-            funding.addContribution("LENDER-D", new BigDecimal("2000000"))
+            funding.addContribution("LENDER-D", excessAmount)
         );
         assertTrue(ex.getMessage().contains("melebihi sisa dana"));
     }
@@ -97,8 +100,9 @@ class FundingTest {
     @Test
     @DisplayName("Kontribusi Rp 0 ditolak")
     void shouldRejectZeroContribution() {
+        BigDecimal zeroAmount = BigDecimal.ZERO;
         IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () ->
-            funding.addContribution("LENDER-A", BigDecimal.ZERO)
+            funding.addContribution("LENDER-A", zeroAmount)
         );
         assertTrue(ex.getMessage().contains("lebih dari nol"));
     }
@@ -106,8 +110,9 @@ class FundingTest {
     @Test
     @DisplayName("Kontribusi negatif ditolak")
     void shouldRejectNegativeContribution() {
+        BigDecimal negativeAmount = new BigDecimal("-500000");
         IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () ->
-            funding.addContribution("LENDER-A", new BigDecimal("-500000"))
+            funding.addContribution("LENDER-A", negativeAmount)
         );
         assertTrue(ex.getMessage().contains("lebih dari nol"));
     }
@@ -117,8 +122,9 @@ class FundingTest {
     void shouldNotChangeTotalWhenContributionRejected() {
         funding.addContribution("LENDER-A", new BigDecimal("9500000"));
 
+        BigDecimal excessAmount = new BigDecimal("2000000");
         assertThrows(IllegalArgumentException.class, () ->
-            funding.addContribution("LENDER-D", new BigDecimal("2000000"))
+            funding.addContribution("LENDER-D", excessAmount)
         );
         assertEquals(0, funding.getTotalFunded().compareTo(new BigDecimal("9500000")));
     }
