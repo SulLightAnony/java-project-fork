@@ -23,4 +23,9 @@ public class PendingState implements LoanState {
     public void reject(Loan context) {
         throw new IllegalStateException("Cannot reject a pending loan, it must be reviewed first");
     }
+
+    @Override
+    public void disburse(Loan context) {
+        throw new IllegalStateException("Cannot disburse a pending loan");
+    }
 }

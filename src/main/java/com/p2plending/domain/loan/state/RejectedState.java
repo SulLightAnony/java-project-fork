@@ -22,4 +22,9 @@ public class RejectedState implements LoanState {
     public void reject(Loan context) {
         throw new IllegalStateException("Loan is already rejected");
     }
+
+    @Override
+    public void disburse(Loan context) {
+        throw new IllegalStateException("Cannot disburse a rejected loan");
+    }
 }

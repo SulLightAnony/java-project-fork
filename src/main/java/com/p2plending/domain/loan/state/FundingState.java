@@ -24,7 +24,8 @@ public class FundingState implements LoanState {
         throw new IllegalStateException("Cannot reject a loan that is already in funding");
     }
 
+    @Override
     public void disburse(Loan loan) {
-        loan.setLoanStatus(LoanStatus.DISBURSED);
+        loan.updateState(new ActiveState(), LoanStatus.DISBURSED);
     }
 }

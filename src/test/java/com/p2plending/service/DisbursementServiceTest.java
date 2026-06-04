@@ -59,9 +59,7 @@ public class DisbursementServiceTest {
         assertNotNull(result);
         assertEquals(loanId, result.getLoanId());
         
-        // Verifikasi menggunakan setter (workaround yang aman)
-        verify(mockLoan).setLoanStatus(LoanStatus.DISBURSED);
-        verify(mockLoan).setLoanState(any(ActiveState.class));
+        verify(mockLoan).disburse();
         
         verify(loanRepository).save(mockLoan);
         verify(disbursementRepository).save(any(Disbursement.class));

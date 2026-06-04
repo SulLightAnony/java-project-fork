@@ -38,7 +38,7 @@ public class LoanFactory {
 
     private static void validateTenor(LoanType loanType, int tenor){
         if(tenor <= 0){
-            throw new IllegalArgumentException("Tenor harus lebih daru 0 bulan");
+            throw new IllegalArgumentException("Tenor harus lebih dari 0 bulan");
         }
         int maxTenor = getMaxTenor(loanType);
         if(tenor > maxTenor){

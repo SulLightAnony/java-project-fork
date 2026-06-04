@@ -49,8 +49,7 @@ public class DisbursementService {
 
         RepaymentSchedule schedule = new RepaymentSchedule(principal, totalInterest, tenor);
 
-        loan.setLoanStatus(LoanStatus.DISBURSED);
-        loan.setLoanState(new ActiveState());
+        loan.disburse();
 
         LoanCost totalCostStructure = new PlatformFeeDecorator(new SimpleLoan(principal), new BigDecimal("50000"));
         BigDecimal totalCost = totalCostStructure.getCost();

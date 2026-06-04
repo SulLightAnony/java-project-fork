@@ -1,6 +1,5 @@
 package com.p2plending.domain.loan;
 
-import com.p2plending.domain.loan.state.ActiveState;
 import com.p2plending.domain.loan.state.DraftState;
 import com.p2plending.domain.loan.state.LoanState;
 import java.math.BigDecimal;
@@ -15,7 +14,7 @@ public class Loan {
     private final LocalDateTime createdAt;
 
     private LoanStatus status;
-    private transient LoanState stateBehavior;
+    private LoanState stateBehavior;
 
     public Loan(String id, Borrower borrower, BigDecimal amount, int tenor, String purpose) {
         // Validasi Domain: Mencegah pembuatan objek jika limit tidak cukup
@@ -64,26 +63,10 @@ public class Loan {
         return status;
     }
 
-    public void setLoanStatus(LoanStatus status) {
-        this.status = status;
-    }
-
-    public void setStatus(LoanStatus status) {
-        this.status = status;
-    }
-
-    public void setState(LoanState stateBehavior) {
-        this.stateBehavior = stateBehavior;
-    }
-
     public void disburse() {
-        this.status = LoanStatus.ACTIVE;
-        this.stateBehavior = new ActiveState();
+        this.stateBehavior.disburse(this);
     }
 
-    public void setLoanState(LoanState state) {
-        this.stateBehavior = state;
-    }
 
     public void submit() {
         this.stateBehavior.submit(this);
