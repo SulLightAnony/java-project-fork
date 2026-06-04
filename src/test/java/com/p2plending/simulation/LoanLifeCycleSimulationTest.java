@@ -2,8 +2,6 @@ package com.p2plending.simulation;
 
 import com.p2plending.domain.disbursement.Disbursement;
 import com.p2plending.domain.loan.Loan;
-import com.p2plending.domain.loan.LoanStatus;
-import com.p2plending.domain.loan.state.ActiveState;
 import com.p2plending.interest.InterestStrategy;
 import com.p2plending.interest.SyariahStrategy;
 import com.p2plending.repository.DisbursementRepository;
@@ -45,7 +43,7 @@ public class LoanLifeCycleSimulationTest {
 
         String loanId = "L-2026-X";
         Loan mockLoan = mock(Loan.class);
-        
+
         when(mockLoan.getAmount()).thenReturn(new BigDecimal("50000000"));
         when(mockLoan.getTenor()).thenReturn(12);
 
@@ -62,25 +60,27 @@ public class LoanLifeCycleSimulationTest {
 
         when(loanRepository.findById(loanId)).thenReturn(Optional.of(mockLoan));
         System.out.println("\n[4] PENCAIRAN DANA (DISBURSEMENT -> ACTIVE)");
-        
+
         InterestStrategy strategy = new SyariahStrategy(new BigDecimal("0.12"));
         System.out.println("    -> Menerapkan 'Strategy Pattern': Menggunakan skema Syariah (Margin 12%).");
-        
+
         Disbursement result = disbursementService.disburseLoan(loanId, strategy);
 
         System.out.println("    -> Uang berhasil ditransfer ke rekening Borrower!");
         System.out.println("    -> 'State Pattern': Status Pinjaman dikunci menjadi DISBURSED.");
-        
+
         System.out.println("\n[5] JADWAL PEMBAYARAN (REPAYMENT SCHEDULE)");
-        System.out.println("    -> Total Pokok + Margin yang harus dibayar : Rp " + result.getRepaymentSchedule().getTotalAmountToRepay());
-        System.out.println("    -> Cicilan per bulan selama 12 bulan       : Rp " + result.getRepaymentSchedule().getMonthlyInstallment());
-        
+        System.out.println("    -> Total Pokok + Margin yang harus dibayar : Rp "
+                + result.getRepaymentSchedule().getTotalAmountToRepay());
+        System.out.println("    -> Cicilan per bulan selama 12 bulan       : Rp "
+                + result.getRepaymentSchedule().getMonthlyInstallment());
+
         System.out.println("\n======================================================");
         System.out.println("               SIMULASI SELESAI & SUKSES!               ");
         System.out.println("======================================================");
 
         assertNotNull(result);
-        verify(mockLoan).disburse(); 
+        verify(mockLoan).disburse();
         verify(disbursementRepository).save(any(Disbursement.class));
     }
 }

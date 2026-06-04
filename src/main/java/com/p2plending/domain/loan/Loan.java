@@ -1,6 +1,5 @@
 package com.p2plending.domain.loan;
 
-import com.p2plending.domain.loan.state.ActiveState;
 import com.p2plending.domain.loan.state.DraftState;
 import com.p2plending.domain.loan.state.LoanState;
 import java.math.BigDecimal;

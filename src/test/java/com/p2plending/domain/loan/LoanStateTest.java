@@ -1,9 +1,7 @@
 package com.p2plending.domain.loan;
 
-import com.p2plending.domain.loan.state.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 
 import java.math.BigDecimal;
 
@@ -64,32 +62,27 @@ class LoanStateTest {
         assertEquals(LoanStatus.PENDING, loan.getStatus());
     }
 
-    @Test
     void draftState_Review_ShouldThrowException() {
         Loan loan = createLoanAtDraft();
-        Executable executable = () -> loan.review();
-        assertThrows(IllegalStateException.class, executable);
+        assertThrows(IllegalStateException.class, loan::review);
     }
 
     @Test
     void draftState_Approve_ShouldThrowException() {
         Loan loan = createLoanAtDraft();
-        Executable executable = () -> loan.approve();
-        assertThrows(IllegalStateException.class, executable);
+        assertThrows(IllegalStateException.class, loan::approve);
     }
 
     @Test
     void draftState_Reject_ShouldThrowException() {
         Loan loan = createLoanAtDraft();
-        Executable executable = () -> loan.reject();
-        assertThrows(IllegalStateException.class, executable);
+        assertThrows(IllegalStateException.class, loan::reject);
     }
 
     @Test
     void draftState_Disburse_ShouldThrowException() {
         Loan loan = createLoanAtDraft();
-        Executable executable = () -> loan.disburse();
-        assertThrows(IllegalStateException.class, executable);
+        assertThrows(IllegalStateException.class, loan::disburse);
     }
 
     // ================================================================
@@ -106,29 +99,25 @@ class LoanStateTest {
     @Test
     void pendingState_Submit_ShouldThrowException() {
         Loan loan = createLoanAtPending();
-        Executable executable = () -> loan.submit();
-        assertThrows(IllegalStateException.class, executable);
+        assertThrows(IllegalStateException.class, loan::approve);
     }
 
     @Test
     void pendingState_Approve_ShouldThrowException() {
         Loan loan = createLoanAtPending();
-        Executable executable = () -> loan.approve();
-        assertThrows(IllegalStateException.class, executable);
+        assertThrows(IllegalStateException.class, loan::submit);
     }
 
     @Test
     void pendingState_Reject_ShouldThrowException() {
         Loan loan = createLoanAtPending();
-        Executable executable = () -> loan.reject();
-        assertThrows(IllegalStateException.class, executable);
+        assertThrows(IllegalStateException.class, loan::reject);
     }
 
     @Test
     void pendingState_Disburse_ShouldThrowException() {
         Loan loan = createLoanAtPending();
-        Executable executable = () -> loan.disburse();
-        assertThrows(IllegalStateException.class, executable);
+        assertThrows(IllegalStateException.class, loan::disburse);
     }
 
     // ================================================================
@@ -152,22 +141,19 @@ class LoanStateTest {
     @Test
     void reviewingState_Submit_ShouldThrowException() {
         Loan loan = createLoanAtReviewing();
-        Executable executable = () -> loan.submit();
-        assertThrows(IllegalStateException.class, executable);
+        assertThrows(IllegalStateException.class, loan::submit);
     }
 
     @Test
     void reviewingState_Review_ShouldThrowException() {
         Loan loan = createLoanAtReviewing();
-        Executable executable = () -> loan.review();
-        assertThrows(IllegalStateException.class, executable);
+        assertThrows(IllegalStateException.class, loan::review);
     }
 
     @Test
     void reviewingState_Disburse_ShouldThrowException() {
         Loan loan = createLoanAtReviewing();
-        Executable executable = () -> loan.disburse();
-        assertThrows(IllegalStateException.class, executable);
+        assertThrows(IllegalStateException.class, loan::disburse);
     }
 
     // ================================================================
@@ -184,29 +170,25 @@ class LoanStateTest {
     @Test
     void fundingState_Submit_ShouldThrowException() {
         Loan loan = createLoanAtFunding();
-        Executable executable = () -> loan.submit();
-        assertThrows(IllegalStateException.class, executable);
+        assertThrows(IllegalStateException.class, loan::submit);
     }
 
     @Test
     void fundingState_Review_ShouldThrowException() {
         Loan loan = createLoanAtFunding();
-        Executable executable = () -> loan.review();
-        assertThrows(IllegalStateException.class, executable);
+        assertThrows(IllegalStateException.class, loan::review);
     }
 
     @Test
     void fundingState_Approve_ShouldThrowException() {
         Loan loan = createLoanAtFunding();
-        Executable executable = () -> loan.approve();
-        assertThrows(IllegalStateException.class, executable);
+        assertThrows(IllegalStateException.class, loan::approve);
     }
 
     @Test
     void fundingState_Reject_ShouldThrowException() {
         Loan loan = createLoanAtFunding();
-        Executable executable = () -> loan.reject();
-        assertThrows(IllegalStateException.class, executable);
+        assertThrows(IllegalStateException.class, loan::reject);
     }
 
     // ================================================================
@@ -216,36 +198,31 @@ class LoanStateTest {
     @Test
     void activeState_Submit_ShouldThrowException() {
         Loan loan = createLoanAtActive();
-        Executable executable = () -> loan.submit();
-        assertThrows(IllegalStateException.class, executable);
+        assertThrows(IllegalStateException.class, loan::submit);
     }
 
     @Test
     void activeState_Review_ShouldThrowException() {
         Loan loan = createLoanAtActive();
-        Executable executable = () -> loan.review();
-        assertThrows(IllegalStateException.class, executable);
+        assertThrows(IllegalStateException.class, loan::review);
     }
 
     @Test
     void activeState_Approve_ShouldThrowException() {
         Loan loan = createLoanAtActive();
-        Executable executable = () -> loan.approve();
-        assertThrows(IllegalStateException.class, executable);
+        assertThrows(IllegalStateException.class, loan::approve);
     }
 
     @Test
     void activeState_Reject_ShouldThrowException() {
         Loan loan = createLoanAtActive();
-        Executable executable = () -> loan.reject();
-        assertThrows(IllegalStateException.class, executable);
+        assertThrows(IllegalStateException.class, loan::reject);
     }
 
     @Test
     void activeState_Disburse_ShouldThrowException() {
         Loan loan = createLoanAtActive();
-        Executable executable = () -> loan.disburse();
-        assertThrows(IllegalStateException.class, executable);
+        assertThrows(IllegalStateException.class, loan::disburse);
     }
 
     // ================================================================
@@ -255,36 +232,31 @@ class LoanStateTest {
     @Test
     void rejectedState_Submit_ShouldThrowException() {
         Loan loan = createLoanAtRejected();
-        Executable executable = () -> loan.submit();
-        assertThrows(IllegalStateException.class, executable);
+        assertThrows(IllegalStateException.class, loan::submit);
     }
 
     @Test
     void rejectedState_Review_ShouldThrowException() {
         Loan loan = createLoanAtRejected();
-        Executable executable = () -> loan.review();
-        assertThrows(IllegalStateException.class, executable);
+        assertThrows(IllegalStateException.class, loan::review);
     }
 
     @Test
     void rejectedState_Approve_ShouldThrowException() {
         Loan loan = createLoanAtRejected();
-        Executable executable = () -> loan.approve();
-        assertThrows(IllegalStateException.class, executable);
+        assertThrows(IllegalStateException.class, loan::approve);
     }
 
     @Test
     void rejectedState_Reject_ShouldThrowException() {
         Loan loan = createLoanAtRejected();
-        Executable executable = () -> loan.reject();
-        assertThrows(IllegalStateException.class, executable);
+        assertThrows(IllegalStateException.class, loan::reject);
     }
 
     @Test
     void rejectedState_Disburse_ShouldThrowException() {
         Loan loan = createLoanAtRejected();
-        Executable executable = () -> loan.disburse();
-        assertThrows(IllegalStateException.class, executable);
+        assertThrows(IllegalStateException.class, loan::disburse);
     }
 
     // ================================================================
