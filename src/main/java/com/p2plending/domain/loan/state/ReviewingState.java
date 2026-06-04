@@ -23,4 +23,9 @@ public class ReviewingState implements LoanState {
     public void reject(Loan context) {
         context.updateState(new RejectedState(), LoanStatus.REJECTED);
     }
+
+    @Override
+    public void disburse(Loan context) {
+        throw new IllegalStateException("Cannot disburse a reviewing loan");
+    }
 }
