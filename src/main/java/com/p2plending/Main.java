@@ -23,8 +23,15 @@ public class Main {
         
         Borrower borrower = new Borrower("B-123", "Sulthan", 700, new BigDecimal("100000000"));
         Loan loan = new Loan("L-2026-X", borrower, new BigDecimal("50000000"), 12, "Modal Usaha");
-        loan.setLoanState(new DraftState());
-        loan.setLoanStatus(LoanStatus.DRAFT);
+        
+        System.out.println("Loan Initial State: " + loan.getStatus());
+        loan.submit();
+        System.out.println("Loan State after Submit: " + loan.getStatus());
+        loan.review();
+        System.out.println("Loan State after Review: " + loan.getStatus());
+        loan.approve();
+        System.out.println("Loan State after Approve (Ready for Funding/Disbursement): " + loan.getStatus());
+        
         loanRepository.save(loan);
         
         System.out.println("Created Loan with Amount: " + loan.getAmount());

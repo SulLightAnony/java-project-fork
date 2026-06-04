@@ -64,26 +64,10 @@ public class Loan {
         return status;
     }
 
-    public void setLoanStatus(LoanStatus status) {
-        this.status = status;
-    }
-
-    public void setStatus(LoanStatus status) {
-        setLoanStatus(status);
-    }
-
-    public void setState(LoanState stateBehavior) {
-        this.stateBehavior = stateBehavior;
-    }
-
     public void disburse() {
-        this.status = LoanStatus.ACTIVE;
-        this.stateBehavior = new ActiveState();
+        this.stateBehavior.disburse(this);
     }
 
-    public void setLoanState(LoanState state) {
-        this.stateBehavior = state;
-    }
 
     public void submit() {
         this.stateBehavior.submit(this);

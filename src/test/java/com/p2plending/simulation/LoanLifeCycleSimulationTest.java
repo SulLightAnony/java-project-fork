@@ -80,8 +80,7 @@ public class LoanLifeCycleSimulationTest {
         System.out.println("======================================================");
 
         assertNotNull(result);
-        verify(mockLoan).setLoanStatus(LoanStatus.DISBURSED); 
-        verify(mockLoan).setLoanState(any(ActiveState.class));
+        verify(mockLoan).disburse(); 
         verify(disbursementRepository).save(any(Disbursement.class));
     }
 }
