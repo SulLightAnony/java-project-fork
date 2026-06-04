@@ -63,4 +63,19 @@ class LoanTest {
         
         assertThrows(IllegalStateException.class, loan::approve, "Cannot approve a draft loan");
     }
+
+    @Test
+    void stateTransition_DisburseFlow() {
+        Borrower borrower = new Borrower("B001", "Ismail", 600, new BigDecimal("10000000"));
+        Loan loan = new Loan("L001", borrower, new BigDecimal("4000000"), 12, "Modal Usaha");
+        
+        loan.submit();
+        loan.review();
+        loan.approve();
+        
+        assertEquals(LoanStatus.FUNDING, loan.getStatus());
+        
+        loan.disburse();
+        assertEquals(LoanStatus.DISBURSED, loan.getStatus());
+    }
 }

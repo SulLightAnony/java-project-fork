@@ -29,7 +29,7 @@ public class ActiveState implements LoanState {
         throw new IllegalStateException("Gagal: Pinjaman sudah aktif, proses pendanaan telah ditutup.");
     }
 
-    // Tidak memakai @Override karena Orang 1 tidak memasukkannya ke interface LoanState
+    @Override
     public void disburse(Loan context) {
         throw new IllegalStateException("Gagal: Pinjaman ini sudah dicairkan sebelumnya.");
     }

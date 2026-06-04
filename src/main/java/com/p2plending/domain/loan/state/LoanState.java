@@ -7,4 +7,5 @@ public interface LoanState {
     void review(Loan context);
     void approve(Loan context);
     void reject(Loan context);
+    void disburse(Loan context);
 }
