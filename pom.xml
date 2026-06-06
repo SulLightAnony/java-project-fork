@@ -79,6 +79,11 @@
             </goals>
           </execution>
         </executions>
+        <configuration>
+          <excludes>
+            <exclude>com/p2plending/Main.class</exclude>
+          </excludes>
+        </configuration>
       </plugin>
 
       <plugin>
