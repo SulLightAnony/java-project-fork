@@ -181,4 +181,4 @@ class FundingTest {
             funding.getTotalContributionBy("LENDER-TIDAK-ADA")
                 .compareTo(BigDecimal.ZERO));
     }
-    }
+}
