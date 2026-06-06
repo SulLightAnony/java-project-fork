@@ -151,4 +151,34 @@ class FundingTest {
         assertEquals(0, funding.getTotalContributionBy("LENDER-A")
             .compareTo(new BigDecimal("3000000")));
     }
-}
+
+    // Refactor: Jacoco
+    // 1. getLoanId() belum ditest secara eksplisit
+    @Test
+    @DisplayName("getLoanId() mengembalikan ID yang benar")
+    void shouldReturnCorrectLoanId() {
+        assertEquals("LOAN-001", funding.getLoanId());
+    }
+
+    // 2. getContributions() immutability — list tidak bisa dimodifikasi dari luar
+    @Test
+    @DisplayName("List kontribusi tidak bisa dimodifikasi dari luar")
+    void shouldReturnUnmodifiableContributions() {
+        funding.addContribution("LENDER-A", new BigDecimal("1000000"));
+        assertThrows(UnsupportedOperationException.class, () ->
+            funding.getContributions().add(
+                new LenderContribution("LENDER-X", new BigDecimal("999"))
+            )
+        );
+    }
+
+    // 3. getTotalContributionBy() untuk lender yang tidak ada
+    @Test
+    @DisplayName("Kontribusi lender yang tidak ada mengembalikan nol")
+    void shouldReturnZeroForNonExistentLender() {
+        funding.addContribution("LENDER-A", new BigDecimal("1000000"));
+        assertEquals(0,
+            funding.getTotalContributionBy("LENDER-TIDAK-ADA")
+                .compareTo(BigDecimal.ZERO));
+    }
+    }
