@@ -2,8 +2,10 @@ package com.p2plending.domain.cashflow;
 
 import java.math.BigDecimal;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -123,5 +125,42 @@ class CashflowTest {
 
         assertEquals(0, loanCashflow.getAmount().compareTo(new BigDecimal("1000000")));
         assertEquals(1, loanCashflow.getChildren().size());
+    }
+
+    // Refactor Jacoco
+        // 1. SingleCashflow.toString() belum ditest
+    @Test
+    @DisplayName("SingleCashflow.toString() mengandung type dan amount")
+    void shouldContainTypeAndAmountInToString() {
+        Cashflow cf = new SingleCashflow(CashflowType.PRINCIPAL, new BigDecimal("1000000"));
+        String result = cf.toString();
+        assertTrue(result.contains("PRINCIPAL"));
+        assertTrue(result.contains("1000000"));
+    }
+
+    // 2. LoanCashflow.toString() belum ditest
+    @Test
+    @DisplayName("LoanCashflow.toString() mengandung nama dan total")
+    void shouldContainNameInToString() {
+        LoanCashflow lc = new LoanCashflow("Cicilan 1");
+        lc.add(new SingleCashflow(CashflowType.INTEREST, new BigDecimal("50000")));
+        assertTrue(lc.toString().contains("Cicilan 1"));
+    }
+
+    // 3. LoanCashflow.getName() belum ditest
+    @Test
+    @DisplayName("LoanCashflow.getName() mengembalikan nama yang benar")
+    void shouldReturnCorrectName() {
+        LoanCashflow lc = new LoanCashflow("Cashflow Loan X");
+        assertEquals("Cashflow Loan X", lc.getName());
+    }
+
+    // 4. SingleCashflow amount = 0 (edge case valid)
+    @Test
+    @DisplayName("SingleCashflow menerima amount nol (valid)")
+    void shouldAcceptZeroAmount() {
+        assertDoesNotThrow(() ->
+            new SingleCashflow(CashflowType.INTEREST, BigDecimal.ZERO)
+        );
     }
 }
