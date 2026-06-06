@@ -4,8 +4,6 @@ import com.p2plending.domain.disbursement.Disbursement;
 import com.p2plending.domain.loan.Loan;
 import com.p2plending.repository.DisbursementRepository;
 import com.p2plending.repository.LoanRepository;
-import com.p2plending.domain.loan.LoanStatus;
-import com.p2plending.domain.loan.state.ActiveState;
 import com.p2plending.interest.InterestStrategy;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

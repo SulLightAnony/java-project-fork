@@ -18,6 +18,7 @@
     
     <sonar.host.url>http://localhost:9000</sonar.host.url>
     <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+    <sonar.exclusions>**/Main.java</sonar.exclusions>
     
   </properties>
 
@@ -79,6 +80,11 @@
             </goals>
           </execution>
         </executions>
+        <configuration>
+          <excludes>
+            <exclude>com/p2plending/Main.class</exclude>
+          </excludes>
+        </configuration>
       </plugin>
 
       <plugin>

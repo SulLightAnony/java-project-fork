@@ -62,6 +62,7 @@ class LoanStateTest {
         assertEquals(LoanStatus.PENDING, loan.getStatus());
     }
 
+    @Test
     void draftState_Review_ShouldThrowException() {
         Loan loan = createLoanAtDraft();
         assertThrows(IllegalStateException.class, loan::review);
@@ -99,13 +100,13 @@ class LoanStateTest {
     @Test
     void pendingState_Submit_ShouldThrowException() {
         Loan loan = createLoanAtPending();
-        assertThrows(IllegalStateException.class, loan::approve);
+        assertThrows(IllegalStateException.class, loan::submit);
     }
 
     @Test
     void pendingState_Approve_ShouldThrowException() {
         Loan loan = createLoanAtPending();
-        assertThrows(IllegalStateException.class, loan::submit);
+        assertThrows(IllegalStateException.class, loan::approve);
     }
 
     @Test
